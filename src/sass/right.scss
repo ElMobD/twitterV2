@@ -1,0 +1,28 @@
+@import "var.scss";
+.right{
+    background-color: black;
+    min-height: 100vh;
+    width: $sideW;
+    position: fixed;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .tendance{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 50vh;
+        width: 100%;
+        border-bottom: 1px solid white;
+        color: white;
+    }
+    .sugg{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        color: white;
+    }
+}
