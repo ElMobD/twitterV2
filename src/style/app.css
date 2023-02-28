@@ -2,7 +2,7 @@
   background-color: aqua;
   min-height: 100vh;
   height: 100%;
-  width: 25vw;
+  width: 20vw;
   position: fixed;
   left: 0;
   display: flex;
@@ -39,7 +39,7 @@
 .right {
   background-color: black;
   min-height: 100vh;
-  width: 25vw;
+  width: 20vw;
   position: fixed;
   right: 0;
   display: flex;
@@ -75,6 +75,17 @@
 .tweet {
   border: 1px solid black;
   min-height: 200px;
+}
+.tweet .tweetHead {
+  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+}
+.tweet .tweetHead .pp {
+  height: 30px;
+  width: 30px;
+  background-color: red;
+  border-radius: 50%;
 }
 
 .loginpage {
@@ -173,12 +184,80 @@
   justify-content: space-between;
 }
 
+.chatCard {
+  position: fixed;
+  right: 0;
+  width: 50vw;
+  height: 100vh;
+  background-color: violet;
+}
+.chatCard .chathead {
+  width: 100%;
+  height: 10%;
+  background-color: rgb(169, 191, 169);
+  display: flex;
+  align-items: center;
+}
+.chatCard .chathead .pp-chat {
+  height: 30px;
+  width: 30px;
+  background-color: black;
+  border-radius: 50%;
+}
+.chatCard .the-chat {
+  min-height: 100vh;
+  height: 10px;
+  width: 100%;
+  background-color: rgb(139, 123, 123);
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+}
+.chatCard .the-chat .chatBox {
+  width: 300px;
+  height: 50px;
+  border: 1px solid black;
+}
+
+.right-chat {
+  float: right;
+}
+
+.left-chat {
+  float: left;
+}
+
+.chatAuthorCard {
+  background-color: brown;
+  height: 100vh;
+  width: 30vw;
+  position: fixed;
+  left: 20%;
+}
+.chatAuthorCard .vosMP {
+  background-color: red;
+  width: 100%;
+  height: 10%;
+  display: grid;
+  place-items: center;
+}
+.chatAuthorCard .author {
+  width: 100%;
+  background-color: green;
+  min-height: 90vh;
+  height: 500px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.chatAuthorCard .author div {
+  height: 200px;
+}
+
 body {
   margin: 0;
   padding: 0;
   width: 100vw;
   min-height: 100vh;
-  background-color: crimson;
 }
 
 /*# sourceMappingURL=app.css.map */

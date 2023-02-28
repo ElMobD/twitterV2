@@ -7,7 +7,6 @@ function TweetReply({details, allTweets, handleReply}){
     const tweetID = useParams();
     const [reply, setReply] = useState([]);
     function test(id){
-        console.log(newReplied);
         var allReply  = allTweets.filter((replyer)=> replyer.origin_id === id);
         setReply(allReply);
         getTweetReplied(id);

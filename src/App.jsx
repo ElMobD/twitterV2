@@ -8,6 +8,8 @@ import Login from './pages/Login';
 import Signin from './pages/Signin';
 import TweetReply from './pages/TweetReply';
 import Profil from './pages/Profil';
+import ChatAuthor from './components/ChatAuthor';
+import Chat from './components/Chat';
 
 function App() {
   //   State/Variable-------------------------------------------------------------------------------------
@@ -21,7 +23,6 @@ function App() {
   const [password, setPassword] = useState("");
   const [mail, setMail] = useState("");
   const navigate = useNavigate();
-  //const tweetID = useParams();
   //   Comportements-------------------------------------------------------------------------------------
 
 
@@ -72,7 +73,6 @@ function getUser(token, callback){
                 }else{
                   reponse=JSON.parse(reponse);
                   reponse = reponse[0];
-                  console.log(reponse);
                   callback(reponse);
                 }
               }else{
@@ -147,7 +147,6 @@ function getTweet(token){
             var reponse = httpRequest.responseText;
             reponse = JSON.parse(reponse);
             setTweets(reponse);
-            console.log(reponse);
         }else{
             alert("Problème avec la requête");
         }
@@ -174,9 +173,9 @@ function getTweet(token){
     httpRequest.send();
   }
 }
-function getUserTweet(token){
-  if(token){
-    console.log("C'est bon y'a le token");
+function getUserTweet(userID){
+  console.log(userID);
+  if(userID){
     var httpRequest = new XMLHttpRequest();
     httpRequest.onreadystatechange = ()=>{
       if (httpRequest.readyState === XMLHttpRequest.DONE) {
@@ -184,14 +183,13 @@ function getUserTweet(token){
             var reponse = httpRequest.responseText;
             reponse = JSON.parse(reponse);
             setUsertweet(reponse);
-            console.log(reponse);
         }else{
             alert("Problème avec la requête");
         }
     }
     };
     httpRequest.open('GET', 'http://localhost/SAE401/site/get-user-tweet.php', true);
-    httpRequest.setRequestHeader("auth", token);
+    httpRequest.setRequestHeader("userID", userID);
     httpRequest.send();
   }else{
     console.log("Frérot le token est vide tu joues à quoi.");
@@ -212,13 +210,22 @@ function handleReply(replied){
               <Routes>
                 <Route path="/" element={<Timeline tweets={tweets} handleReply={handleReply}/>}/>
                 <Route path="/reply/:tweetID" element={<TweetReply token={token} details={details} allTweets={allTweets} handleReply={handleReply}/>}/>
-                <Route path='/profil' element={<Profil user={user} token={token} getUserTweet={getUserTweet} userTweet={userTweet}/>}/>
+                <Route path='/profil/:userID' element={<Profil getUserTweet={getUserTweet} userTweet={userTweet} handleReply={handleReply}/>}/>
               </Routes>
             <Right token={token} user={user}/>
         </>
         }/>
         <Route path='/login' element={<Login pseudo={pseudo} password={password} handlePseudo={handlePseudo} handlePassword={handlePassword} login={login}/>}/>
         <Route path='/signin' element={<Signin/>}/>
+        <Route path='/message/*' element={
+          <>
+            <Left token={token} user={user} logout={logout}/>
+            <ChatAuthor token={token} user={user}/>
+            <Routes>
+              <Route path='/:mpID' element={<Chat token={token}/>}/>
+            </Routes>
+          </>
+        }/>
       </Routes>
     </>
   );

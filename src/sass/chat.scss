@@ -1,0 +1,40 @@
+.chatCard{
+    position: fixed;
+    right: 0;
+    width: 50vw;
+    height: 100vh;
+    background-color: violet;
+    .chathead{
+        width: 100%;
+        height: 10%;
+        background-color: rgb(169, 191, 169);
+        display: flex;
+        align-items: center;
+        .pp-chat{
+            height: 30px;
+            width: 30px;
+            background-color: black;
+            border-radius: 50%;
+        }
+    }
+    .the-chat{
+        min-height: 100vh;
+        height: 10px;
+        width: 100%;
+        background-color: rgb(139, 123, 123);
+        overflow-x: hidden;
+        overflow-y: auto;
+        position: relative;
+        .chatBox{
+            width: 300px;
+            height: 50px;
+            border: 1px solid black;
+        }
+    }
+}
+.right-chat{
+    float: right;
+}
+.left-chat{
+    float: left;
+}

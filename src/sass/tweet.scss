@@ -1,4 +1,15 @@
 .tweet{
     border: 1px solid black;
     min-height: 200px;
+    .tweetHead{
+        border-bottom: 1px solid black;
+        display: flex;
+        align-items: center;
+        .pp{
+            height: 30px;
+            width: 30px;
+            background-color: red;
+            border-radius: 50%;
+        }
+    }
 }

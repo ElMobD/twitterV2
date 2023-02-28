@@ -3,13 +3,15 @@ function Timeline({tweets, handleReply}){
     return (
         <>
             <div className="homepage">
-                {tweets.map((tweet)=>{
+                {tweets.map((tweet)=>{;
                     return <Tweet 
                                 key={tweet.tweet_id} 
                                 tweet={tweet.tweet_id}
                                 pseudo={tweet.pseudo} 
+                                identifiant={tweet.identifiant}
                                 content={tweet.content}
-                                handleReply={handleReply} 
+                                user={tweet.user_id}
+                                handleReply={handleReply}
                             />
                 })}
             </div>

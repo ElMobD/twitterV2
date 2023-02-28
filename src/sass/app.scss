@@ -8,11 +8,12 @@
 @import "logo.scss";
 @import "reply.scss";
 @import "profil.scss";
+@import "chat.scss";
+@import "chatAuthor.scss";
 
 body{
     margin: 0;
     padding: 0;
     width: 100vw;
     min-height: 100vh;
-    background-color: crimson;
 }

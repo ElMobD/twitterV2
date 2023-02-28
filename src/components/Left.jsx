@@ -1,6 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import Logo from './Logo';
+import { useNavigate, useParams } from 'react-router-dom';
+
 function Left({token, user, logout }){
+    const navigate = useNavigate();
+    const url = window.location.href;
     return (
         <>
             <div className="left">
@@ -21,17 +25,25 @@ function Left({token, user, logout }){
                         <>
                             <div className="explo-mess">
                                 <p>Explorer</p>
-                                <p>Message</p>
+                                <NavLink to={"/message"}><p>Message</p></NavLink>
                             </div>
                             <div className="profil">
-                                <NavLink to="/profil">
-                                    <div className="user-profil">
+                                
+                                    <div className="user-profil" onClick={()=>{
+                                            console.log(url);
+                                            if(url === "http://localhost:5181/profil/"+user.user_id){
+                                                console.log("C'est dejà l'url.");
+                                            }else{
+                                                navigate("/profil/"+user.user_id);
+                                                window.location.reload();
+                                            }
+                                        }}>
                                         <div className="photo">
 
                                         </div>
                                         <p>{user.pseudo}</p>
                                     </div>
-                                </NavLink>
+                                
                                 <div className="logout">
                                     <button onClick={logout}>Déconnexion</button>
                                 </div>
