@@ -1,8 +1,8 @@
 import { NavLink } from 'react-router-dom';
 import Logo from './Logo';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-function Left({token, user, logout }){
+function Left({token, user, logout, tweetSpawn}){
     const navigate = useNavigate();
     const url = window.location.href;
     return (
@@ -26,6 +26,7 @@ function Left({token, user, logout }){
                             <div className="explo-mess">
                                 <p>Explorer</p>
                                 <NavLink to={"/message"}><p>Message</p></NavLink>
+                               <button onClick={tweetSpawn}>Tweeter</button>
                             </div>
                             <div className="profil">
                                 

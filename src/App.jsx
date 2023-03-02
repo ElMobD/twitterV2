@@ -10,6 +10,7 @@ import TweetReply from './pages/TweetReply';
 import Profil from './pages/Profil';
 import ChatAuthor from './components/ChatAuthor';
 import Chat from './components/Chat';
+import TweetForm from './components/TweetForm';
 
 function App() {
   //   State/Variable-------------------------------------------------------------------------------------
@@ -22,6 +23,7 @@ function App() {
   const [pseudo, setPseudo] = useState("");
   const [password, setPassword] = useState("");
   const [mail, setMail] = useState("");
+  const [tweetForm, setTweetForm] = useState(false);
   const navigate = useNavigate();
   //   Comportements-------------------------------------------------------------------------------------
 
@@ -196,9 +198,37 @@ function getUserTweet(userID){
   }
 }
 function handleReply(replied){
-  var tweetReply = allTweets.filter((tweet) => tweet.tweet_id === replied); 
+  var tweetReply = allTweets.filter((tweet) => tweet.tweet_id === replied);
   setDetails(tweetReply);
   navigate("/reply/"+replied);
+}
+async function postTweet(token,content,repliedID) {
+  if(repliedID){
+    const response = await fetch('http://localhost/SAE401/site/post-user-tweet.php',{
+      method: 'POST',
+      headers: {'auth': token},
+      body: JSON.stringify({"content":  content, "replied": repliedID})
+  });
+  const json = await response.json();
+  console.log(json);
+  }else{
+    var repliedID = "NULL";
+    const response = await fetch('http://localhost/SAE401/site/post-user-tweet.php',{
+      method: 'POST',
+      headers: {'auth': token},
+      body: JSON.stringify({"content":  content, "replied": repliedID})
+  });
+  const json = await response.json();
+  console.log(json);
+  }
+}
+function tweetSpawn(){
+  console.log("ffd");
+  if(tweetForm === true){
+    setTweetForm(false);
+  }else if(tweetForm === false){
+    setTweetForm(true);
+  }
 }
   //   Render-------------------------------------------------------------------------------------
   return (
@@ -206,10 +236,10 @@ function handleReply(replied){
       <Routes>
         <Route path='*' element={
         <>
-            <Left token={token} user={user} logout={logout}/>
+            <Left token={token} user={user} logout={logout} tweetSpawn={tweetSpawn}/>
               <Routes>
                 <Route path="/" element={<Timeline tweets={tweets} handleReply={handleReply}/>}/>
-                <Route path="/reply/:tweetID" element={<TweetReply token={token} details={details} allTweets={allTweets} handleReply={handleReply}/>}/>
+                <Route path="/reply/:tweetID" element={<TweetReply token={token} details={details} allTweets={allTweets} handleReply={handleReply} postTweet={postTweet}/>}/>
                 <Route path='/profil/:userID' element={<Profil getUserTweet={getUserTweet} userTweet={userTweet} handleReply={handleReply}/>}/>
               </Routes>
             <Right token={token} user={user}/>
@@ -219,7 +249,7 @@ function handleReply(replied){
         <Route path='/signin' element={<Signin/>}/>
         <Route path='/message/*' element={
           <>
-            <Left token={token} user={user} logout={logout}/>
+            <Left token={token} user={user} logout={logout} tweetSpawn={tweetSpawn}/>
             <ChatAuthor token={token} user={user}/>
             <Routes>
               <Route path='/:mpID' element={<Chat token={token}/>}/>
@@ -227,6 +257,7 @@ function handleReply(replied){
           </>
         }/>
       </Routes>
+      {tweetForm ? (<TweetForm tweetSpawn={tweetSpawn} postTweet={postTweet} token={token}/>) : undefined}
     </>
   );
 }
