@@ -42,13 +42,6 @@ useEffect(()=>{
     getTweet(token);
 },[token]);
 
-function tableauVide(tableau) {
-  if (tableau.length === 0) {
-    return true; // le tableau est vide
-  } else {
-    return false; // le tableau n'est pas vide
-  }
-}
 const handleMail = (event)=>{
   var newValue = event.target.value;
   setMail(newValue);
@@ -176,7 +169,6 @@ function getTweet(token){
   }
 }
 function getUserTweet(userID){
-  console.log(userID);
   if(userID){
     var httpRequest = new XMLHttpRequest();
     httpRequest.onreadystatechange = ()=>{
@@ -203,7 +195,7 @@ function handleReply(replied){
   navigate("/reply/"+replied);
 }
 async function postTweet(token,content,repliedID) {
-  if(repliedID){
+  if(repliedID && token){
     const response = await fetch('http://localhost/SAE401/site/post-user-tweet.php',{
       method: 'POST',
       headers: {'auth': token},
@@ -220,6 +212,18 @@ async function postTweet(token,content,repliedID) {
   });
   const json = await response.json();
   console.log(json);
+  }
+}
+async function getUserFollow(token,callback) {
+  if(token){
+    const response = await fetch('http://localhost/SAE401/site/get-user-follow.php', {
+      method: 'GET',
+      headers: {'auth': token},
+    });
+    const json = await response.json();
+    callback(json);
+  }else{
+    console.log("Y'a pas de token brow");
   }
 }
 function tweetSpawn(){
@@ -240,7 +244,7 @@ function tweetSpawn(){
               <Routes>
                 <Route path="/" element={<Timeline tweets={tweets} handleReply={handleReply}/>}/>
                 <Route path="/reply/:tweetID" element={<TweetReply token={token} details={details} allTweets={allTweets} handleReply={handleReply} postTweet={postTweet}/>}/>
-                <Route path='/profil/:userID' element={<Profil getUserTweet={getUserTweet} userTweet={userTweet} handleReply={handleReply}/>}/>
+                <Route path='/profil/:userID' element={<Profil getUserTweet={getUserTweet} userTweet={userTweet} handleReply={handleReply} user={user} token={token} getUserFollow={getUserFollow}/>}/>
               </Routes>
             <Right token={token} user={user}/>
         </>

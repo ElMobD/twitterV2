@@ -9,12 +9,11 @@ function Tweet({pseudo, content, handleReply, tweet, user}){
                 
                     <div className="tweetHead" onClick={
                         ()=>{
-                            console.log(url);
+                            console.log(user);
                                             if(url === "http://localhost:5181/profil/"+user){
                                                 console.log("C'est dejà l'url.");
                                             }else{
                                                 navigate("/profil/"+user);
-                                                window.location.reload();
                                             }
                         }
                     }>

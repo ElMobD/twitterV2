@@ -36,7 +36,6 @@ function Left({token, user, logout, tweetSpawn}){
                                                 console.log("C'est dejà l'url.");
                                             }else{
                                                 navigate("/profil/"+user.user_id);
-                                                window.location.reload();
                                             }
                                         }}>
                                         <div className="photo">

@@ -14,15 +14,77 @@
         align-items: center;
         height: 50vh;
         width: 100%;
-        border-bottom: 1px solid white;
         color: white;
+        .tend-card{
+            width: 100%;
+            height: 100%;
+            background-color: green;
+            .user-search{
+                input{
+                    width: 100%;
+                }
+            }
+            .user-search-result{
+                overflow-x: hidden;
+                overflow-y: auto;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .user-search-div{
+                    background-color: red;
+                }
+            }
+        }
     }
     .sugg{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: 100%;
+        height: 50vh;
         width: 100%;
         color: white;
+        .sugg-render{
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            .suggTrue{
+                width: 100%;
+                height: 100%;
+                background-color: red;
+                .rand-user{
+                    background-color: green;
+                    width: 100%;
+                    height: 50px;
+                    border-bottom: 1px solid black;
+                    display: flex;
+                    a{
+                        flex: 1;
+                        height: 100%;
+                        display: grid;
+                        place-items: center;
+                        .rand-user-left{
+                            .rand-user-pp{
+                                height: 20px;
+                                width: 20px;
+                                border-radius: 50%;
+                                background-color: black;
+                            }
+                        }
+                    }
+                    .rand-user-center{
+                        display: grid;
+                        place-items: center;
+                        flex: 2;
+                        height: 100%;
+                    }
+                    .rand-user-right{
+                        display: grid;
+                        place-items: center;
+                        flex: 1;
+                        height: 100%;
+                    }
+                }
+            }
+        }
     }
 }

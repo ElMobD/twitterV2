@@ -51,7 +51,9 @@ function TweetReply({details, allTweets, handleReply, postTweet,token}){
                             key={tweet.tweet_id}
                             tweet={tweet.tweet_id}
                             pseudo={tweet.pseudo}
+                            identifiant={tweet.identifiant}
                             content={tweet.content}
+                            user={tweet.user_id}
                             handleReply={handleReply}
                         />
             })) : (<>Aucune Réponse à ce Tweet</>)}
