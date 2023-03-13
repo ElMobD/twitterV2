@@ -1,7 +1,9 @@
+
+
 function Logo(){
     return (
         <div className="logo">
-                    LOGO
+                    <svg src="../ressources/LogoTw.svg"/>
          </div>
     );
 }

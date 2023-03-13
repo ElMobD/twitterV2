@@ -58,8 +58,8 @@ function Right({token}){
                         <div className="user-search-result">
                             {userSearch.map((user)=>{
                                 return (
-                                    <NavLink to={"/profil/"+user.user_id}>
-                                        <div className="user-search-div" key={user.user_id}>
+                                    <NavLink to={"/profil/"+user.user_id}  key={user.user_id}>
+                                        <div className="user-search-div">
                                             {user.pseudo}
                                         </div>
                                     </NavLink>

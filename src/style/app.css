@@ -146,10 +146,15 @@
   border-radius: 50%;
 }
 
+@font-face {
+  font-family: "font";
+  src: url("../font/ABeeZee-Regular.ttf");
+}
 .loginpage {
   position: relative;
   width: 100vw;
   min-height: 100vh;
+  background-color: #171738;
 }
 .loginpage .login-card {
   position: absolute;
@@ -157,18 +162,76 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 500px;
-  height: 500px;
-  background-color: black;
-  color: white;
+  min-height: 500px;
+  background-color: #ffffff;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+.loginpage .login-card .login-card {
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+.loginpage .login-card .login-field {
+  height: 100%;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.loginpage .login-card .login-field .field {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.loginpage .login-card .login-field .field label {
+  color: #7180B9;
+  margin-top: 20px;
+}
+.loginpage .login-card .login-field .field input {
+  border: none;
+  outline: none;
+  border-radius: 7px;
+  padding: 15px;
+  background-color: #F0F0F0;
+}
+.loginpage .login-card .login-button {
+  display: grid;
+  place-items: center;
+  margin-top: 20px;
+}
+.loginpage .login-card .login-button button {
+  cursor: pointer;
+  padding: 12px;
+  border: none;
+  outline: none;
+  border-radius: 7px;
+  background-color: #3423A6;
+  transition: 200ms;
+  color: #ffffff;
+}
+.loginpage .login-card .login-button button:hover {
+  background-color: #2E1760;
+}
+.loginpage .login-card .login-error-type {
+  color: red;
+}
 
+@font-face {
+  font-family: "font";
+  src: url("../font/ABeeZee-Regular.ttf");
+}
 .signpage {
   position: relative;
   width: 100vw;
   min-height: 100vh;
+  background-color: #171738;
 }
 .signpage .sign-card {
   position: absolute;
@@ -176,12 +239,67 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 500px;
-  height: 500px;
-  background-color: black;
-  color: white;
+  background-color: #ffffff;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.signpage .sign-card .sign-head {
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+.signpage .sign-card .sign-field {
+  height: 100%;
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.signpage .sign-card .sign-field .field {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.signpage .sign-card .sign-field .field label {
+  color: #7180B9;
+  margin-top: 20px;
+}
+.signpage .sign-card .sign-field .field input {
+  border: none;
+  outline: none;
+  border-radius: 7px;
+  padding: 15px;
+  background-color: #F0F0F0;
+}
+.signpage .sign-card .sign-field .field .good {
+  color: green;
+}
+.signpage .sign-card .sign-field .field .error {
+  color: red;
+}
+.signpage .sign-card .sign-button {
+  display: grid;
+  place-items: center;
+  margin-top: 20px;
+}
+.signpage .sign-card .sign-button button {
+  cursor: pointer;
+  padding: 12px;
+  border: none;
+  outline: none;
+  border-radius: 7px;
+  background-color: #3423A6;
+  transition: 200ms;
+  color: #ffffff;
+}
+.signpage .sign-card .sign-button button:hover {
+  background-color: #2E1760;
 }
 
 .logo {
@@ -189,6 +307,10 @@
   height: 100px;
   display: grid;
   place-items: center;
+}
+.logo svg {
+  width: 100%;
+  height: 100%;
 }
 
 .tweetReply {
@@ -451,6 +573,7 @@ body {
   padding: 0;
   width: 100vw;
   min-height: 100vh;
+  background-color: #ffffff;
 }
 
 /*# sourceMappingURL=app.css.map */

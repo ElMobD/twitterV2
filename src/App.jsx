@@ -12,6 +12,7 @@ import ChatAuthor from './components/ChatAuthor';
 import Chat from './components/Chat';
 import TweetForm from './components/TweetForm';
 
+
 function App() {
   //   State/Variable-------------------------------------------------------------------------------------
   const [token, setToken] = useState(window.localStorage.getItem('token'));
@@ -21,6 +22,7 @@ function App() {
   const [allTweets, setAlltweets] = useState([]);
   const [details, setDetails] = useState([{pseudo:"",content:""}]);
   const [pseudo, setPseudo] = useState("");
+  const [identifiant, setIdentifiant] = useState("@");
   const [password, setPassword] = useState("");
   const [mail, setMail] = useState("");
   const [tweetForm, setTweetForm] = useState(false);
@@ -42,17 +44,34 @@ useEffect(()=>{
     getTweet(token);
 },[token]);
 
-const handleMail = (event)=>{
+const handleMail = (event,callback)=>{
+  console.log()
   var newValue = event.target.value;
   setMail(newValue);
+  if(callback){
+    callback(newValue);
+  }
 };
-const handlePseudo = (event)=>{
+const handlePseudo = (event, callback)=>{
   var newValue = event.target.value;
   setPseudo(newValue);
+  if(callback){
+    callback(newValue);
+  }
 };
-const handlePassword = (event)=>{
+const handlePassword = (event, callback)=>{
   var newValue = event.target.value;
   setPassword(newValue);
+  if(callback){
+    callback(newValue);
+  }
+};
+const handleIdentifiant = (event,callback)=>{
+  var newValue = event.target.value;
+  setIdentifiant(newValue);
+  if(callback){
+    callback(newValue);
+  }
 };
 function getUser(token, callback){
   if(token){
@@ -82,34 +101,69 @@ function getUser(token, callback){
     console.log("Le token Fourni n'est bon. Couilles pas fr.")
   }
 }
-function login(pseudo, password){
-  var httpRequest = new XMLHttpRequest();
-  httpRequest.onreadystatechange = () =>{
-      if (httpRequest.readyState === XMLHttpRequest.DONE) {
-          if (httpRequest.status === 200) {
-              var reponse = httpRequest.responseText;
-              reponse = JSON.parse(reponse);
-              var token = reponse.token;
-              window.localStorage.setItem('token', token);
-              var newUser = getUser(token, (userInfo)=>{
-                  if(userInfo){
-                    setUser(userInfo);
-                  }else{
-                    console.log("Y'a une erreur");
-                  }
-              });
-              setUser(newUser);
-              navigate("/");
-              window.location.reload();
-          }else{
-              alert("Problème avec la requête");
-          }
+async function register(mail,pseudo,identifiant,password){
+  if(mail && pseudo && identifiant && password){
+    if(identifiant.charAt(0) === "@"){
+      const response = await fetch('http://localhost/SAE401/site/register.php', {
+        method: 'POST',
+        body: JSON.stringify({
+          "mail":  mail, 
+          "pseudo": pseudo, 
+          "identifiant": identifiant, 
+          "password": password
+        })
+      });
+      const json = await response.json();
+      if(json === 777){
+        navigate("/login");
+      }else if(json === 22){
+        alert("Compte déjà Créer");
       }
-  };
-  httpRequest.open('POST', 'http://localhost/SAE401/site/login.php', true);
-  httpRequest.setRequestHeader("Content-Type", "application/json");
-  var data = JSON.stringify({"pseudo": pseudo, "password": password});
-  httpRequest.send(data);
+    }else{
+      console.log("L'identifiant n'est pas bon brow.")
+    }
+  }else{
+    console.log("Il manque des truc la");
+  }
+}
+function login(pseudo, password, callback){
+  if(pseudo && password ){
+    var httpRequest = new XMLHttpRequest();
+    httpRequest.onreadystatechange = () =>{
+        if (httpRequest.readyState === XMLHttpRequest.DONE) {
+            if (httpRequest.status === 200) {
+                var reponse = httpRequest.responseText;
+                reponse = JSON.parse(reponse);
+                if(reponse === 222){
+                 callback("Votre informations de connexions ne sont pas reconnu.");
+                  return;
+                }
+                var token = reponse.token;
+                window.localStorage.setItem('token', token);
+                var newUser = getUser(token, (userInfo)=>{
+                    if(userInfo){
+                      setUser(userInfo);
+                    }else{
+                      console.log("Y'a une erreur");
+                    }
+                });
+                setUser(newUser);
+                navigate("/");
+                window.location.reload();
+            }else{
+                alert("Problème avec la requête");
+            }
+        }
+    };
+    httpRequest.open('POST', 'http://localhost/SAE401/site/login.php', true);
+    httpRequest.setRequestHeader("Content-Type", "application/json");
+    var data = JSON.stringify({"pseudo": pseudo, "password": password});
+    httpRequest.send(data);
+  }else{
+    if(callback){
+      callback("Le pseudo et/ou le mot est/sont vide(s)");
+    }
+  }
 }
 function logout(){
     window.localStorage.removeItem("token");
@@ -250,7 +304,7 @@ function tweetSpawn(){
         </>
         }/>
         <Route path='/login' element={<Login pseudo={pseudo} password={password} handlePseudo={handlePseudo} handlePassword={handlePassword} login={login}/>}/>
-        <Route path='/signin' element={<Signin/>}/>
+        <Route path='/signin' element={<Signin identifiant={identifiant} pseudo={pseudo} password={password} mail={mail} handleMail={handleMail} handlePseudo={handlePseudo} handlePassword={handlePassword} handleIdentifiant={handleIdentifiant} register={register}/>}/>
         <Route path='/message/*' element={
           <>
             <Left token={token} user={user} logout={logout} tweetSpawn={tweetSpawn}/>
