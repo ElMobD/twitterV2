@@ -1,15 +1,46 @@
 .tweet{
-    border: 1px solid black;
-    min-height: 200px;
-    .tweetHead{
-        border-bottom: 1px solid black;
-        display: flex;
-        align-items: center;
-        .pp{
-            height: 30px;
-            width: 30px;
-            background-color: red;
-            border-radius: 50%;
+    margin-top: 25px;
+    border-bottom: 1px solid $border-color;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .tweet-center{
+        width: 70%;
+        height: 100%;
+        .tweetHead{
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex: 0.2;
+            width: 100%;
+            .pp{
+                height: 75px;
+                width: 75px;
+                background-color: red;
+                border-radius: 50%;
+            }
+        }
+        .tweetBody{
+            flex: 2;
+            width: 100%;
+            height: 100%;
+            .content{
+                margin-top: 50px;
+            }
+            .tweet-picture{
+                background-color: grey;
+                width: 100%;
+                min-height: 250px;
+                margin-top: 25px;
+            }
+            .tweet-actions{
+                display: flex;
+                justify-content: space-around;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
         }
     }
 }

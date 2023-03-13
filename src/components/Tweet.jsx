@@ -6,8 +6,8 @@ function Tweet({pseudo, content, handleReply, tweet, user}){
     return (
         <>
             <div className="tweet">
-                
-                    <div className="tweetHead" onClick={
+                <div className="tweet-center">
+                <div className="tweetHead" onClick={
                         ()=>{
                             console.log(user);
                                             if(url === "http://localhost:5181/profil/"+user){
@@ -20,11 +20,18 @@ function Tweet({pseudo, content, handleReply, tweet, user}){
                         <div className="pp"></div>
                         <p>{pseudo}</p>
                     </div>
- 
-                <div className="content">{content}</div>
-                <button onClick={()=>{handleReply(tweet)}}>reply</button>
-                <button>retweet</button>
-                <button>like</button>
+                    <div className="tweetBody">
+                        <div className="content">{content}</div>
+                        <div className="tweet-picture">
+
+                        </div>
+                        <div className="tweet-actions">
+                            <button onClick={()=>{handleReply(tweet)}}>reply</button>
+                            <button>retweet</button>
+                            <button>like</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </>
     );

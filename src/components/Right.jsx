@@ -50,17 +50,24 @@ function Right({token}){
         <>
             <div className="right">
                 <div className="tendance">
-                    <h1>Tendance</h1>
+                    <div className="tend-head">
+                        <p>Recherche</p>
+                    </div>
                     <div className="tend-card">
                         <div className="user-search">
-                            <input type="text" value={search} onChange={(event)=>{handleSearch(event)}}/>
+                            <input type="text" placeholder="Rechercher" value={search} onChange={(event)=>{handleSearch(event)}}/>
                         </div>
                         <div className="user-search-result">
                             {userSearch.map((user)=>{
                                 return (
                                     <NavLink to={"/profil/"+user.user_id}  key={user.user_id}>
                                         <div className="user-search-div">
-                                            {user.pseudo}
+                                            <div className="user-search-pp">
+                                                <div className="the-fameuse-pp"></div>
+                                            </div>
+                                            <div className="user-search-name">
+                                                {user.pseudo}
+                                            </div>
                                         </div>
                                     </NavLink>
                                 );
@@ -69,7 +76,9 @@ function Right({token}){
                     </div>
                 </div>
                 <div className="sugg">
-                    <h1>Profils suggérée</h1>
+                    <div className="sugg-head">
+                        <p>Profils Suggérés</p>
+                    </div>
                     <div className="sugg-render">
                         {token === null ? 
                         (

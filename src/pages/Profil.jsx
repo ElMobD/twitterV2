@@ -75,20 +75,22 @@ function Profil({ getUserTweet, userTweet, handleReply , user, getUserFollow, to
             <div className="profilpage">
                 <div className="header">
                     <div className="banner">
-                        <div className="pp">
+                        <div className="banner-wallpaper">
+                            <div className="pp">
 
+                            </div>
                         </div>
-                        {userID.userID === user.user_id ? undefined : (<button onClick={subV2}>{isFollowed ? ("Se désabonner"):("Suivre")}</button>)}
                     </div>
                     <div className="info">
+
                         <div className="perso">
+                        {userID.userID === user.user_id ? undefined : (<button id="isFollow" onClick={subV2}>{isFollowed ? ("Se désabonner"):("Suivre")}</button>)}
                             <p>{userProfil.pseudo}</p>
                             <p>{userProfil.identifiant}</p>
                             <p>{userProfil.bio}</p>
                             <span>{followed} abonnement</span> <span>{follower} abonnées</span>
                         </div>
                         <div className="post">
-                            <button>Tweet</button>
                             {userID.userID === user.user_id ? 
                             undefined 
                             : 

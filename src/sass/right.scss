@@ -1,6 +1,7 @@
 @import "var.scss";
 .right{
-    background-color: black;
+    border-left: 1px solid $border-color;
+    background-color: $bg-color;
     min-height: 100vh;
     width: $sideW;
     position: fixed;
@@ -14,48 +15,97 @@
         align-items: center;
         height: 50vh;
         width: 100%;
-        color: white;
+        color: rgb(0, 0, 0);
+        .tend-head{
+            width: 100%;
+            display: grid;
+            place-items: center;
+            border-bottom: 1px solid $border-color;
+            font-weight: bold;
+        }
         .tend-card{
+            position: relative;
             width: 100%;
             height: 100%;
-            background-color: green;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             .user-search{
+                height: 50px;
+                display: grid;
+                place-items: center;
+                width: 75%;
                 input{
                     width: 100%;
+                    border: none;
+                    outline: none;
+                    padding: 7px;
+                    border-radius: 10px;
+                    background-color: $bg-field;
                 }
             }
             .user-search-result{
+                position: absolute;
+                bottom: 0;
                 overflow-x: hidden;
                 overflow-y: auto;
                 width: 100%;
-                height: 100%;
+                height: 1px;
+                min-height: 80%;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                .user-search-div{
-                    background-color: red;
+                a{
+                    width: 100%;
+                    .user-search-div{
+                        display: flex;
+                        align-items: center;
+                        width: 100%;
+                        height: 50px;
+                        border-bottom: 1px solid $border-color;
+                        .user-search-pp{
+                            flex: 1;
+                            display: grid;
+                            place-items: center;
+                            .the-fameuse-pp{
+                               height: 30px;
+                               width: 30px;
+                               border-radius: 50%;
+                               background-color: grey; 
+                            }
+                        }
+                        .user-search-name{
+                            display: grid;
+                            place-items: center;
+                            flex: 2;
+                        }
+                    }
                 }
             }
         }
     }
     .sugg{
+        border-top: 1px solid $border-color;
         height: 50vh;
         width: 100%;
-        color: white;
+        .sugg-head{
+            text-align: center;
+            font-weight: bold;
+        }
         .sugg-render{
-            height: 100%;
+            margin-top: 50px;
+            height: 1px;
+            min-height: 300px;
             width: 100%;
             overflow-x: hidden;
             overflow-y: auto;
             .suggTrue{
                 width: 100%;
                 height: 100%;
-                background-color: red;
                 .rand-user{
-                    background-color: green;
                     width: 100%;
-                    height: 50px;
-                    border-bottom: 1px solid black;
+                    height: 75px;
+                    border-bottom: 1px solid $border-color;
                     display: flex;
                     a{
                         flex: 1;
@@ -64,8 +114,8 @@
                         place-items: center;
                         .rand-user-left{
                             .rand-user-pp{
-                                height: 20px;
-                                width: 20px;
+                                height: 35px;
+                                width: 35px;
                                 border-radius: 50%;
                                 background-color: black;
                             }
@@ -82,6 +132,8 @@
                         place-items: center;
                         flex: 1;
                         height: 100%;
+                        color: $quaternary;
+                        font-size: 30px;
                     }
                 }
             }

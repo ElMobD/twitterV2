@@ -1,43 +1,113 @@
 .left {
-  background-color: aqua;
+  background-color: #ffffff;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
   min-height: 100vh;
   height: 100%;
   width: 20vw;
   position: fixed;
   left: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.left .left-bottom {
-  position: relative;
-  height: 100%;
-  width: 100%;
   display: grid;
   place-items: center;
 }
-.left .left-bottom .sous {
+.left .left-sous {
+  height: 90%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.left .left-sous .logo {
+  width: 100px;
+  height: 100px;
+  background-color: grey;
+  border-radius: 50%;
+}
+.left .left-sous .explo-mess {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 30%;
+}
+.left .left-sous .explo-mess button {
+  cursor: pointer;
+}
+.left .left-sous .explo-mess button.classic-button {
+  border: none;
+  background: none;
+}
+.left .left-sous .left-bottom {
+  position: relative;
+  width: 100%;
+}
+.left .left-sous .left-bottom .sous {
   width: 100%;
   height: 100%;
 }
-.left .left-bottom .sous .profil {
+.left .left-sous .left-bottom .sous .logSign {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100px;
+  justify-content: space-between;
+}
+.left .left-sous .left-bottom .sous .logSign a #signBut {
+  border: 2px solid #7180B9;
+  color: #7180B9;
+  width: 150px;
+  height: 45px;
+  outline: none;
+  cursor: pointer;
+  transition: 200ms;
+  border-radius: 12px;
+  background: none;
+}
+.left .left-sous .left-bottom .sous .logSign a #logBut {
+  border: 2px solid #171738;
+  color: #171738;
+  width: 150px;
+  height: 45px;
+  outline: none;
+  cursor: pointer;
+  transition: 200ms;
+  border-radius: 12px;
+  background: none;
+}
+.left .left-sous .left-bottom .sous .profil {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.left .left-bottom .sous .profil .user-profil {
+.left .left-sous .left-bottom .sous .profil .user-profil {
   cursor: pointer;
   text-align: center;
 }
-.left .left-bottom .sous .profil .user-profil .photo {
+.left .left-sous .left-bottom .sous .profil .user-profil .photo {
   background-color: rgb(151, 39, 39);
   width: 50px;
   height: 50px;
   border-radius: 50%;
 }
+.left .left-sous .left-bottom .sous .profil .user-profil p {
+  color: #7180B9;
+}
+.left .left-sous .left-bottom .sous .profil .logout button {
+  border: 2px solid red;
+  color: red;
+  width: 150px;
+  height: 45px;
+  outline: none;
+  cursor: pointer;
+  transition: 200ms;
+  border-radius: 12px;
+  background: none;
+}
 
 .right {
-  background-color: black;
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
   min-height: 100vh;
   width: 20vw;
   position: fixed;
@@ -52,35 +122,88 @@
   align-items: center;
   height: 50vh;
   width: 100%;
-  color: white;
+  color: rgb(0, 0, 0);
+}
+.right .tendance .tend-head {
+  width: 100%;
+  display: grid;
+  place-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  font-weight: bold;
 }
 .right .tendance .tend-card {
-  width: 100%;
-  height: 100%;
-  background-color: green;
-}
-.right .tendance .tend-card .user-search input {
-  width: 100%;
-}
-.right .tendance .tend-card .user-search-result {
-  overflow-x: hidden;
-  overflow-y: auto;
+  position: relative;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.right .tendance .tend-card .user-search-result .user-search-div {
-  background-color: red;
+.right .tendance .tend-card .user-search {
+  height: 50px;
+  display: grid;
+  place-items: center;
+  width: 75%;
+}
+.right .tendance .tend-card .user-search input {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 7px;
+  border-radius: 10px;
+  background-color: #F0F0F0;
+}
+.right .tendance .tend-card .user-search-result {
+  position: absolute;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 100%;
+  height: 1px;
+  min-height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.right .tendance .tend-card .user-search-result a {
+  width: 100%;
+}
+.right .tendance .tend-card .user-search-result a .user-search-div {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.right .tendance .tend-card .user-search-result a .user-search-div .user-search-pp {
+  flex: 1;
+  display: grid;
+  place-items: center;
+}
+.right .tendance .tend-card .user-search-result a .user-search-div .user-search-pp .the-fameuse-pp {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: grey;
+}
+.right .tendance .tend-card .user-search-result a .user-search-div .user-search-name {
+  display: grid;
+  place-items: center;
+  flex: 2;
 }
 .right .sugg {
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
   height: 50vh;
   width: 100%;
-  color: white;
+}
+.right .sugg .sugg-head {
+  text-align: center;
+  font-weight: bold;
 }
 .right .sugg .sugg-render {
-  height: 100%;
+  margin-top: 50px;
+  height: 1px;
+  min-height: 300px;
   width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
@@ -88,13 +211,11 @@
 .right .sugg .sugg-render .suggTrue {
   width: 100%;
   height: 100%;
-  background-color: red;
 }
 .right .sugg .sugg-render .suggTrue .rand-user {
-  background-color: green;
   width: 100%;
-  height: 50px;
-  border-bottom: 1px solid black;
+  height: 75px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   display: flex;
 }
 .right .sugg .sugg-render .suggTrue .rand-user a {
@@ -104,8 +225,8 @@
   place-items: center;
 }
 .right .sugg .sugg-render .suggTrue .rand-user a .rand-user-left .rand-user-pp {
-  height: 20px;
-  width: 20px;
+  height: 35px;
+  width: 35px;
   border-radius: 50%;
   background-color: black;
 }
@@ -120,30 +241,62 @@
   place-items: center;
   flex: 1;
   height: 100%;
+  color: #7180B9;
+  font-size: 30px;
 }
 
 .homepage {
   position: absolute;
-  transform: translateX(50%);
+  transform: translateX(33.3%);
   min-height: 100vh;
-  width: 50vw;
-  background-color: rgb(0, 255, 26);
+  width: 60vw;
 }
 
 .tweet {
-  border: 1px solid black;
-  min-height: 200px;
-}
-.tweet .tweetHead {
-  border-bottom: 1px solid black;
+  margin-top: 25px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  min-height: 400px;
   display: flex;
+  flex-direction: column;
   align-items: center;
 }
-.tweet .tweetHead .pp {
-  height: 30px;
-  width: 30px;
+.tweet .tweet-center {
+  width: 70%;
+  height: 100%;
+}
+.tweet .tweet-center .tweetHead {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0.2;
+  width: 100%;
+}
+.tweet .tweet-center .tweetHead .pp {
+  height: 75px;
+  width: 75px;
   background-color: red;
   border-radius: 50%;
+}
+.tweet .tweet-center .tweetBody {
+  flex: 2;
+  width: 100%;
+  height: 100%;
+}
+.tweet .tweet-center .tweetBody .content {
+  margin-top: 50px;
+}
+.tweet .tweet-center .tweetBody .tweet-picture {
+  background-color: grey;
+  width: 100%;
+  min-height: 250px;
+  margin-top: 25px;
+}
+.tweet .tweet-center .tweetBody .tweet-actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 @font-face {
@@ -323,18 +476,17 @@
 
 .profilpage {
   position: absolute;
-  transform: translateX(50%);
+  transform: translateX(33.3%);
   min-height: 100vh;
   height: 100%;
-  width: 50vw;
-  background-color: rgb(159, 177, 19);
+  width: 60vw;
 }
 .profilpage .header {
   width: 100%;
   height: 400px;
-  background-color: rgb(204, 193, 193);
   display: flex;
   flex-direction: column;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 .profilpage .header .banner {
   position: relative;
@@ -343,15 +495,20 @@
   place-items: center;
   height: 100%;
 }
-.profilpage .header .banner .pp {
+.profilpage .header .banner .banner-wallpaper {
+  background-color: rgb(34, 23, 23);
+  border-radius: 15px;
+  width: 95%;
+  height: 90%;
+  display: grid;
+  place-items: center;
+}
+.profilpage .header .banner .banner-wallpaper .pp {
   height: 100px;
   width: 100px;
-  background-color: black;
+  background-color: brown;
+  border: 7px solid #ffffff;
   border-radius: 50%;
-}
-.profilpage .header .banner button {
-  position: absolute;
-  right: 0;
 }
 .profilpage .header .info {
   width: 100%;
@@ -360,7 +517,13 @@
   place-items: center;
 }
 .profilpage .header .info .perso {
+  position: relative;
   width: 90%;
+}
+.profilpage .header .info .perso #isFollow {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 .profilpage .header .info .post {
   width: fit-content;
