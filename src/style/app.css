@@ -524,12 +524,37 @@
   position: absolute;
   top: 0;
   right: 0;
+  border: none;
+  border-radius: 5px;
+  width: 100px;
+  height: 30px;
+  cursor: pointer;
+  color: white;
+  background-color: #3423A6;
+}
+.profilpage .header .info .perso #pseudo {
+  font-size: 30px;
+  color: #7180B9;
+  margin: 0;
+}
+.profilpage .header .info .perso span {
+  color: #2E1760;
+  font-weight: bold;
 }
 .profilpage .header .info .post {
   width: fit-content;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.profilpage .header .info .post button {
+  border: none;
+  border-radius: 5px;
+  width: 100px;
+  height: 30px;
+  cursor: pointer;
+  color: white;
+  background-color: #3423A6;
 }
 
 .chatCard {

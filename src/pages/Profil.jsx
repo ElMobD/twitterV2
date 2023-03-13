@@ -84,10 +84,10 @@ function Profil({ getUserTweet, userTweet, handleReply , user, getUserFollow, to
                     <div className="info">
 
                         <div className="perso">
-                        {userID.userID === user.user_id ? undefined : (<button id="isFollow" onClick={subV2}>{isFollowed ? ("Se désabonner"):("Suivre")}</button>)}
-                            <p>{userProfil.pseudo}</p>
+                        {userID.userID === user.user_id ? undefined : (<button id="isFollow" onClick={subV2}>{isFollowed ? ("Se désabonner"):("Suivre +")}</button>)}
+                            <p id="pseudo">{userProfil.pseudo}</p>
                             <p>{userProfil.identifiant}</p>
-                            <p>{userProfil.bio}</p>
+                            <p>{userProfil.bio ? (<>{userProfil.bio}</>) : ("Pas de bio")}</p>
                             <span>{followed} abonnement</span> <span>{follower} abonnées</span>
                         </div>
                         <div className="post">

@@ -44,6 +44,22 @@
                     position: absolute;
                     top: 0;
                     right: 0;
+                    border: none;
+                    border-radius: 5px;
+                    width: 100px;
+                    height: 30px;
+                    cursor: pointer;
+                    color: white;
+                    background-color: $tertiary;
+                }
+                #pseudo{
+                    font-size: 30px;
+                    color: $quaternary;
+                    margin: 0;
+                }
+                span{
+                    color: $secondary;
+                    font-weight: bold;
                 }
             }
             .post{
@@ -51,6 +67,15 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
+                button{
+                    border: none;
+                    border-radius: 5px;
+                    width: 100px;
+                    height: 30px;
+                    cursor: pointer;
+                    color: white;
+                    background-color: $tertiary;
+                }
             }
         }
     }
