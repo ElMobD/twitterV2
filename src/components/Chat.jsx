@@ -18,6 +18,7 @@ function Chat({token}){
         });
         const json = await response.json();
         setChat(json);
+        console.log(json);
     }
 
 
@@ -41,6 +42,16 @@ function Chat({token}){
             const json = await reponse.json();
             console.log(json);
             setMessage("");
+            setChat((curr) =>{
+                var copyChat = curr;
+                var newChat = {
+                    content: content,
+                    sent: "1",
+                    message_id: Date.now()
+                };
+                copyChat.push(newChat);
+                return copyChat;
+            });
         }else{
             console.log("le message est vide bro");
         }
@@ -58,18 +69,28 @@ function Chat({token}){
             <div className="chatCard">
                 <div className="chathead">
                     <div className="pp-chat">
+                        <div className="the-chat-pp">
 
+                        </div>
                     </div>
                     <p>{author.pseudo}</p>
                 </div>
                 <div className="the-chat">
                     {chat.map((chat)=>{
                         return (
-                            <div key={chat.message_id}>
+                            <div key={chat.message_id} className="chat-box-general">
                                 {chat.sent === "1" ?
-                                    (<div className='chatBox right-chat'>{chat.content}</div>)
+                                    (<div className='chatBox right-chat'>
+                                        <div className="chatbox-interieur">
+                                            {chat.content}
+                                        </div>
+                                    </div>)
                                     :
-                                    (<div className='chatBox left-chat'>{chat.content}</div>)
+                                    (<div className='chatBox left-chat'>
+                                        <div className="chatbox-interieur">
+                                            {chat.content}
+                                        </div>
+                                    </div>)
                                 }
                             </div>
                         );

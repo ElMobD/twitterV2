@@ -20,7 +20,7 @@ function App() {
   const [userTweet, setUsertweet] = useState([]);
   const [tweets, setTweets] = useState([]);
   const [allTweets, setAlltweets] = useState([]);
-  const [details, setDetails] = useState([{pseudo:"",content:""}]);
+  const [formReplyID, setFormReplyID] = useState();
   const [pseudo, setPseudo] = useState("");
   const [identifiant, setIdentifiant] = useState("@");
   const [password, setPassword] = useState("");
@@ -135,7 +135,7 @@ function login(pseudo, password, callback){
                 var reponse = httpRequest.responseText;
                 reponse = JSON.parse(reponse);
                 if(reponse === 222){
-                 callback("Votre informations de connexions ne sont pas reconnu.");
+                 callback("Vos informations de connexions ne sont pas reconnu.");
                   return;
                 }
                 var token = reponse.token;
@@ -244,12 +244,10 @@ function getUserTweet(userID){
   }
 }
 function handleReply(replied){
-  var tweetReply = allTweets.filter((tweet) => tweet.tweet_id === replied);
-  setDetails(tweetReply);
   navigate("/reply/"+replied);
 }
 async function postTweet(token,content,repliedID) {
-  if(repliedID && token){
+  if(repliedID){
     const response = await fetch('http://localhost/SAE401/site/post-user-tweet.php',{
       method: 'POST',
       headers: {'auth': token},
@@ -266,7 +264,7 @@ async function postTweet(token,content,repliedID) {
   });
   const json = await response.json();
   console.log(json);
-  }
+  };
 }
 async function getUserFollow(token,callback) {
   if(token){
@@ -280,14 +278,18 @@ async function getUserFollow(token,callback) {
     console.log("Y'a pas de token brow");
   }
 }
-function tweetSpawn(){
-  console.log("ffd");
+function tweetSpawn(tweetID){
   if(tweetForm === true){
     setTweetForm(false);
   }else if(tweetForm === false){
     setTweetForm(true);
   }
+
+  if(typeof tweetID === "string"){
+    setFormReplyID(tweetID);
+  }
 }
+
   //   Render-------------------------------------------------------------------------------------
   return (
     <>
@@ -297,7 +299,7 @@ function tweetSpawn(){
             <Left token={token} user={user} logout={logout} tweetSpawn={tweetSpawn}/>
               <Routes>
                 <Route path="/" element={<Timeline tweets={tweets} handleReply={handleReply}/>}/>
-                <Route path="/reply/:tweetID" element={<TweetReply token={token} details={details} allTweets={allTweets} handleReply={handleReply} postTweet={postTweet}/>}/>
+                <Route path="/reply/:tweetID" element={<TweetReply handleReply={handleReply} tweetSpawn={tweetSpawn}/>}/>
                 <Route path='/profil/:userID' element={<Profil getUserTweet={getUserTweet} userTweet={userTweet} handleReply={handleReply} user={user} token={token} getUserFollow={getUserFollow}/>}/>
               </Routes>
             <Right token={token} user={user}/>
@@ -315,7 +317,7 @@ function tweetSpawn(){
           </>
         }/>
       </Routes>
-      {tweetForm ? (<TweetForm tweetSpawn={tweetSpawn} postTweet={postTweet} token={token}/>) : undefined}
+      {tweetForm ? (<TweetForm tweetSpawn={tweetSpawn} postTweet={postTweet} token={token} tweetID={formReplyID}/>) : undefined}
     </>
   );
 }

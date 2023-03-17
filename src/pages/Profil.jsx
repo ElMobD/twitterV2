@@ -108,10 +108,11 @@ function Profil({ getUserTweet, userTweet, handleReply , user, getUserFollow, to
                     content={tweet.content} 
                     handleReply={handleReply} 
                     user={tweet.user_id}
+                    img_link={tweet.img_link}
                     />;
                 }) ) : (
                 <>
-                    <div>Aucun Tweet</div>
+                    <div className="tweetVide">Aucun Tweet</div>
                 </>)}
             </div>
             </div>

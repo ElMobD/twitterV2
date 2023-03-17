@@ -11,6 +11,7 @@ function Timeline({tweets, handleReply}){
                                 identifiant={tweet.identifiant}
                                 content={tweet.content}
                                 user={tweet.user_id}
+                                img_link={tweet.img_link}
                                 handleReply={handleReply}
                             />
                 })}

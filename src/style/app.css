@@ -254,8 +254,9 @@
 
 .tweet {
   margin-top: 25px;
+  padding-bottom: 25px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  min-height: 400px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -273,8 +274,8 @@
   width: 100%;
 }
 .tweet .tweet-center .tweetHead .pp {
-  height: 75px;
-  width: 75px;
+  height: 50px;
+  width: 50px;
   background-color: red;
   border-radius: 50%;
 }
@@ -295,8 +296,8 @@
 .tweet .tweet-center .tweetBody .tweet-actions {
   display: flex;
   justify-content: space-around;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 @font-face {
@@ -468,10 +469,59 @@
 
 .tweetReply {
   position: absolute;
-  transform: translateX(50%);
+  transform: translateX(33.3%);
   min-height: 100vh;
-  width: 50vw;
-  background-color: rgb(0, 255, 26);
+  width: 60vw;
+}
+.tweetReply .replied {
+  margin-top: 25px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tweetReply .replied .replied-sous {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  height: 100%;
+}
+.tweetReply .replied .replied-sous .replied-head {
+  flex: 0.3;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tweetReply .replied .replied-sous .replied-head .replied-head-pp .the-head-replied-pp {
+  height: 75px;
+  width: 75px;
+  background-color: red;
+  border-radius: 50%;
+}
+.tweetReply .replied .replied-sous .replied-body {
+  flex: 2;
+}
+.tweetReply .replied .replied-sous .replied-body .replied-content {
+  padding-bottom: 25px;
+}
+.tweetReply .replied .replied-sous .replied-body .replied-img {
+  height: 100px;
+  width: 100%;
+  background-color: grey;
+}
+.tweetReply .replied .replied-sous .replied-body .replied-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.tweetReply .reply {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 50vh;
 }
 
 .profilpage {
@@ -526,7 +576,7 @@
   right: 0;
   border: none;
   border-radius: 5px;
-  width: 100px;
+  width: 120px;
   height: 30px;
   cursor: pointer;
   color: white;
@@ -556,49 +606,84 @@
   color: white;
   background-color: #3423A6;
 }
+.profilpage .userTweet {
+  width: 100%;
+  height: 50%;
+}
+.profilpage .userTweet .tweetVide {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: #171738;
+}
 
 .chatCard {
   position: fixed;
   right: 0;
   width: 50vw;
   height: 100vh;
-  background-color: violet;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .chatCard .chathead {
   width: 100%;
   height: 10%;
-  background-color: rgb(169, 191, 169);
   display: flex;
   align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 .chatCard .chathead .pp-chat {
-  height: 30px;
-  width: 30px;
-  background-color: black;
+  flex: 1;
+  display: grid;
+  place-items: center;
+}
+.chatCard .chathead .pp-chat .the-chat-pp {
+  height: 50px;
+  width: 50px;
+  background-color: rgb(245, 0, 0);
   border-radius: 50%;
+}
+.chatCard .chathead p {
+  flex: 2;
 }
 .chatCard .the-chat {
   min-height: 80vh;
   height: 10px;
-  width: 100%;
-  background-color: rgb(139, 123, 123);
+  width: 80%;
   overflow-x: hidden;
   overflow-y: auto;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
-.chatCard .the-chat .chatBox {
-  width: 50%;
-  height: 50px;
-  border: 1px solid black;
+.chatCard .the-chat .chat-box-general {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.chatCard .the-chat .chat-box-general .chatBox {
+  padding-left: 7%;
+  padding-right: 7%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  min-width: 5%;
+  max-width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chatCard .the-chat .chat-box-general .chatBox .chatbox-interieur {
   display: grid;
   place-items: center;
+  word-wrap: break-word;
+  width: 90%;
 }
 .chatCard .mpForm {
   position: relative;
-  background-color: black;
   display: grid;
   place-items: center;
-  width: 100%;
+  width: 80%;
   height: 10%;
 }
 .chatCard .mpForm button {
@@ -607,40 +692,43 @@
   transform: translateX(-75%);
 }
 .chatCard .mpForm input {
+  background-color: #F0F0F0;
   width: 90%;
-  border-radius: 20px;
-  padding: 10px;
+  border-radius: 25px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
   outline: none;
   border: none;
+  color: #171738;
 }
 
 .right-chat {
   float: right;
   color: black;
-  background-color: grey;
+  background-color: #D9D9D9;
   border-bottom-left-radius: 50px;
   border-top-left-radius: 50px;
-  border-bottom-right-radius: 100px;
+  border-bottom-right-radius: 75px;
 }
 
 .left-chat {
   float: left;
-  background-color: blue;
-  color: white;
+  background-color: #3423A6;
+  color: #ffffff;
   border-bottom-right-radius: 50px;
   border-top-right-radius: 50px;
-  border-bottom-left-radius: 100px;
+  border-bottom-left-radius: 75px;
 }
 
 .chatAuthorCard {
-  background-color: brown;
   height: 100vh;
   width: 30vw;
   position: fixed;
   left: 20%;
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
 }
 .chatAuthorCard .vosMP {
-  background-color: red;
   width: 100%;
   height: 10%;
   display: grid;
@@ -648,65 +736,40 @@
 }
 .chatAuthorCard .author {
   width: 100%;
-  background-color: green;
   min-height: 90vh;
   height: 500px;
   overflow-x: hidden;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.chatAuthorCard .author div {
-  height: 200px;
+.chatAuthorCard .author a {
+  text-decoration: none;
+  width: 85%;
+}
+.chatAuthorCard .author a .chat-author-div {
+  display: flex;
+  align-items: center;
+  height: 75px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.chatAuthorCard .author a .chat-author-div .author-left {
+  display: grid;
+  place-items: center;
+  flex: 1;
+}
+.chatAuthorCard .author a .chat-author-div .author-left .author-chat-pp {
+  width: 50px;
+  height: 50px;
+  background-color: red;
+  border-radius: 50%;
+}
+.chatAuthorCard .author a .chat-author-div .author-right {
+  flex: 2;
+  color: black;
 }
 
-.reply-filtre {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  top: 0;
-  left: 0;
-  z-index: 2;
-}
-.reply-filtre .reply-form {
-  height: 250px;
-  width: 500px;
-  background-color: rgb(165, 60, 60);
-  position: fixed;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1000;
-}
-.reply-filtre .reply-form .reply-head {
-  width: 100%;
-}
-.reply-filtre .reply-form .reply-body {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background-color: burlywood;
-}
-.reply-filtre .reply-form .reply-body textarea {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  height: 70%;
-  max-width: 80%;
-  max-height: 70%;
-  min-height: 70%;
-  min-width: 80%;
-  background: none;
-  border: none;
-  outline: none;
-}
-.reply-filtre .reply-form .reply-body button {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
 .tweet-filtre {
   position: fixed;
   width: 100vw;

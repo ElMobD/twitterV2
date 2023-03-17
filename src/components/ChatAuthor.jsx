@@ -10,11 +10,12 @@ function ChatAuthor({token}){
             headers: {'auth': token},
         });
         const json = await response.json();
+        console.log(json);
         setAuthor(json);
     }
     useEffect(()=>{
         getAuthor(token);
-    },[]);
+    },[token]);
     return (
             <div className="chatAuthorCard">
                 <div className="vosMP">

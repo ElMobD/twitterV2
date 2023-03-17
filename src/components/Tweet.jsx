@@ -1,6 +1,5 @@
-import { NavLink } from 'react-router-dom';
-import { useNavigate, useParams } from 'react-router-dom';
-function Tweet({pseudo, content, handleReply, tweet, user}){
+import { useNavigate } from 'react-router-dom';
+function Tweet({pseudo, content, handleReply, tweet, user, img_link}){
     const navigate = useNavigate();
     const url = window.location.href;
     return (
@@ -22,9 +21,7 @@ function Tweet({pseudo, content, handleReply, tweet, user}){
                     </div>
                     <div className="tweetBody">
                         <div className="content">{content}</div>
-                        <div className="tweet-picture">
-
-                        </div>
+                        {img_link ? (<div className='tweet-picture'></div>): undefined}
                         <div className="tweet-actions">
                             <button onClick={()=>{handleReply(tweet)}}>reply</button>
                             <button>retweet</button>

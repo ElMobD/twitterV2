@@ -1,18 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams} from 'react-router-dom';
 import Tweet from "../components/Tweet";
-import ReplyForm from "../components/replyForm";
+import { NavLink } from 'react-router-dom';
 
-function TweetReply({details, allTweets, handleReply, postTweet,token}){
-    const [newReplied, setNewReplied] = useState(details);
-    const [showForm, setShowForm] = useState(false);
+function TweetReply({ handleReply,tweetSpawn}){
+    const [userT, setUserT] = useState([]);
     const tweetID = useParams();
     const [reply, setReply] = useState([]);
-    function test(id){
-        var allReply  = allTweets.filter((replyer)=> replyer.origin_id === id);
-        setReply(allReply);
-        getTweetReplied(id);
-    };
+
     function tabVide (tab){
         if(tab.length === 0){
             return true;
@@ -20,29 +15,64 @@ function TweetReply({details, allTweets, handleReply, postTweet,token}){
             return false;
         }
     };
-    function getTweetReplied(id){
-       var replied = allTweets.filter((replieder)=> replieder.tweet_id === id);
-       setNewReplied(replied);
+    async function getAllTweet(tweetID){
+        const response = await fetch("http://localhost/SAE401/site/get-all-tweet.php",{
+            method: 'GET',
+        });
+        const json = await response.json();
+        console.log(json);
+        test(tweetID,json);
     };
-    function replySpawn(){
-        if(showForm === false){
-            setShowForm(true);
-        }else if(showForm === true){
-            setShowForm(false);
-        }
+    function test(tweetID,reponse){
+        var allReply = reponse.filter((replyer)=> replyer.origin_id === tweetID);
+        setReply(allReply);
+        getUserTweet(tweetID,reponse);
     };
+    function getUserTweet(tweetID, reponse){
+        console.log(tweetID);
+        var replied = reponse.filter((replieder)=> replieder.tweet_id === tweetID);
+        console.log(replied);
+        setUserT(replied);
+    }
     useEffect(()=>{
-        test(tweetID.tweetID);
+        getAllTweet(tweetID.tweetID);
     },[tweetID]);
     
     return (
         <>
-        {showForm ? (<ReplyForm replySpawn={replySpawn} postTweet={postTweet} token={token} repliedID={tweetID}/>):undefined}
         <div className="tweetReply">
             <div className="replied">
-                <div className="tweetHead">{tabVide(newReplied) === false ? newReplied[0].pseudo : null}</div>
-                <div className="content">{ tabVide(newReplied) === false ? newReplied[0].content: null}</div>
-                <button onClick={replySpawn}>Répondre</button>
+               <div className="replied-sous">
+                <NavLink to={"/profil/"}>
+                    <div className="replied-head">
+                        <div className="replied-head-pp">
+                            <div className="the-head-replied-pp">
+
+                            </div>
+                        </div>
+                        <div className="replied-author">
+                            {tabVide(userT) === false ? userT[0].pseudo : "Le tableau est vide"}
+                        </div>
+                    </div>
+                </NavLink>
+                    <div className="replied-body">
+                        <div className="replied-content">
+                            {tabVide(userT) === false ? userT[0].content : "Le tableau est vide"}
+                        </div>
+                        {userT.map((info)=>{
+                            return (
+                                <div key={info.tweet_id+100}>
+                                    {info.img_link ? (<div className="replied-img"></div>):undefined}
+                                </div>
+                            );
+                        })}
+                        <div className="replied-actions">
+                            <button onClick={()=>{tweetSpawn(userT[0].tweet_id)}}>Répondre</button>
+                            <button>Retweet</button>
+                            <button>Like</button>
+                        </div>
+                    </div>
+               </div>
             </div>
             <div className="reply">
             {tabVide(reply) !== true ? 
@@ -54,6 +84,7 @@ function TweetReply({details, allTweets, handleReply, postTweet,token}){
                             identifiant={tweet.identifiant}
                             content={tweet.content}
                             user={tweet.user_id}
+                            img_link={tweet.img_link}
                             handleReply={handleReply}
                         />
             })) : (<>Aucune Réponse à ce Tweet</>)}
@@ -64,3 +95,18 @@ function TweetReply({details, allTweets, handleReply, postTweet,token}){
     );
 }
 export default TweetReply;
+
+/*
+
+function test(id){
+        getAllTweet();
+       // var allReply  = allTweets.filter((replyer)=> replyer.origin_id === id);
+        //setReply(allReply);
+       getTweetReplied(id);
+    };
+    function getTweetReplied(id){
+        console.log(id, allTweets);
+        var replied = allTweets.filter((replieder)=> replieder.tweet_id === id);
+        console.log(replied);
+        setNewReplied(replied);
+    };*/

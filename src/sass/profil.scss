@@ -46,7 +46,7 @@
                     right: 0;
                     border: none;
                     border-radius: 5px;
-                    width: 100px;
+                    width: 120px;
                     height: 30px;
                     cursor: pointer;
                     color: white;
@@ -77,6 +77,17 @@
                     background-color: $tertiary;
                 }
             }
+        }
+    }
+    .userTweet{
+        width: 100%;
+        height: 50%;
+        .tweetVide{
+            width: 100%;
+            height: 100%;
+            display: grid;
+            place-items: center;
+            color: $primary;
         }
     }
 }

@@ -45,7 +45,7 @@ function Right({token}){
     };
     useEffect(()=>{
         getRandomUser(token);
-    }, [])
+    }, [token])
     return (
         <>
             <div className="right">
