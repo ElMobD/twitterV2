@@ -26,11 +26,27 @@ function TweetForm({tweetSpawn, postTweet, token, tweetID}){
         <div className="tweet-filtre" onClick={()=>{console.log(tweetID)}}>
             <div className="tweet-form">
                 <div className="tweet-head">
-                    <button onClick={tweetSpawn}>X</button>
+                    <div className="tweet-head-sous">
+                        <button className='tweetformquit' onClick={tweetSpawn}>X</button>
+                        <p>Écrire un tweet</p>
+                    </div>
                 </div>
                 <div className="tweet-body">
-                    <textarea maxLength={255} value={replyContent} placeholder={"Écrivez quelque chose..."} onChange={(event)=>{handleContent(event)}}></textarea>
-                    <button onClick={()=>{post(tweetID)}}>Poster</button> <p>Caractère restant : <span>{nbrChar}</span></p>
+                    <div className="tweet-body-pp">
+                        <div className="pp">
+
+                        </div>
+                    </div>
+                    <div className="tweet-body-content">
+                        <textarea maxLength={255} value={replyContent} placeholder={"Écrivez quelque chose..."} onChange={(event)=>{handleContent(event)}}></textarea>
+                    </div>      
+                </div>
+                <div className="tweet-form-valid">
+                    <button onClick={()=>{post(tweetID)}}>Tweet</button> 
+                    {nbrChar < 255 ? (<div className='nbr-char green'>{nbrChar}</div>): undefined}
+                    {nbrChar < 170 ? (<div className='nbr-char yellow'>{nbrChar}</div>): undefined}
+                    {nbrChar < 85 ? (<div className='nbr-char orange'>{nbrChar}</div>): undefined}
+                    {nbrChar < 30 ? (<div className='nbr-char red'>{nbrChar}</div>): undefined}
                 </div>
             </div>
         </div>

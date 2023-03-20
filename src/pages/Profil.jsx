@@ -88,7 +88,8 @@ function Profil({ getUserTweet, userTweet, handleReply , user, getUserFollow, to
                             <p id="pseudo">{userProfil.pseudo}</p>
                             <p>{userProfil.identifiant}</p>
                             <p>{userProfil.bio ? (<>{userProfil.bio}</>) : ("Pas de bio")}</p>
-                            <span>{followed} abonnement</span> <span>{follower} abonnées</span>
+                            <NavLink to={"/profil/"+userID.userID+"/following"}><span>{followed} abonnement</span></NavLink>
+                            <NavLink to={"/profil/"+userID.userID+"/follower"}><span>{follower} abonnées</span></NavLink>
                         </div>
                         <div className="post">
                             {userID.userID === user.user_id ? 

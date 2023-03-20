@@ -11,7 +11,8 @@ import Profil from './pages/Profil';
 import ChatAuthor from './components/ChatAuthor';
 import Chat from './components/Chat';
 import TweetForm from './components/TweetForm';
-
+import Follower from './components/Follower';
+import Following from './components/Following';
 
 function App() {
   //   State/Variable-------------------------------------------------------------------------------------
@@ -301,6 +302,8 @@ function tweetSpawn(tweetID){
                 <Route path="/" element={<Timeline tweets={tweets} handleReply={handleReply}/>}/>
                 <Route path="/reply/:tweetID" element={<TweetReply handleReply={handleReply} tweetSpawn={tweetSpawn}/>}/>
                 <Route path='/profil/:userID' element={<Profil getUserTweet={getUserTweet} userTweet={userTweet} handleReply={handleReply} user={user} token={token} getUserFollow={getUserFollow}/>}/>
+                <Route path='/profil/:userID/follower'element={<Follower token={token} />}/>
+                <Route path='/profil/:userID/following' element={<Following token={token} />}/>
               </Routes>
             <Right token={token} user={user}/>
         </>

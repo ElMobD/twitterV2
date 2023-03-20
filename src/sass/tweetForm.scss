@@ -9,53 +9,99 @@
     .tweet-form{
         height: 250px;
         width: 500px;
-        background-color: rgb(165, 60, 60);
+        background-color: $bg-color;
+        border-radius: 17px;
         position: fixed;
         top: 40%;
         left: 50%;
         transform: translate(-50%,-50%);
         z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         .tweet-head{
+            flex: 0.5;
             width: 100%;
+            position: relative;
+            display: grid;
+            place-items: center;
+            .tweet-head-sous{
+                display: flex;
+                align-items: center;
+                width: 90%;
+                .tweetformquit{
+                    border: none;
+                    background: none;
+                    font-size: 20px;
+                    color: $mini-text-color;
+                    cursor: pointer;
+                }
+                p{
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+            }
         }
         .tweet-body{
+            flex: 2;
             position: relative;
             width: 100%;
-            height: 100%;
-            background-color: burlywood;
-            textarea{
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%,-50%);
-                width: 80%;
-                height: 70%;
-                max-width: 80%;
-                max-height: 70%;
-                min-height: 70%;
-                min-width: 80%;
-                background: none;
-                border: none;
-                outline: none;
-            }
-            button{
-                position: absolute;
-                bottom: 0;
-                left: 50%;
-                transform: translate(-50%,-50%);
-            }
-            p{
-                span{
-                    &.green{
-
-                    }
-                    &.orange{
-
-                    }
-                    &.red{
-                        
-                    }
+            background-color: $bg-color;
+            display: flex;
+            .tweet-body-pp{
+                flex: 0.25;
+                padding: 20px;
+                .pp{
+                    float: right;
+                    height: 30px;
+                    width: 30px;
+                    border-radius: 50%;
+                    background-color: red;
                 }
+            }
+            .tweet-body-content{
+                flex: 2;
+                padding-top: 20px;
+                textarea{
+                    width: 90%;
+                    height: 95%;
+                    background: none;
+                    border: 1px solid $border-color;
+                    outline: none;
+                }
+            }
+        }
+    }
+    .tweet-form-valid{
+        position: relative;
+        display: grid;
+        place-items: center;
+        flex: 0.5;
+        width: 75%;
+        button{
+            border: none;
+            border-radius: 5px;
+            width: 80px;
+            height: 30px;
+            cursor: pointer;
+            color: white;
+            background-color: $tertiary;
+        }
+        .nbr-char{
+            position: absolute;
+            right: 0;
+            &.green{
+                color: green;
+            }
+            &.yellow{
+                color: yellow;
+            }
+            &.orange{
+                color: orange;
+            }
+            &.red{
+                color: red;
             }
         }
     }
