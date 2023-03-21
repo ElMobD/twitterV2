@@ -85,7 +85,10 @@ function Tweet({pseudo, content, handleReply, tweet, user, img_link, getTweetLik
                         <div className="tweet-actions">
                             <button onClick={()=>{handleReply(tweet)}}>reply</button>
                             <button>retweet</button>
-                            {isLike ? (<button className='liked' onClick={()=>{handleLike(token)}}>like {like}</button>):(<button onClick={()=>{handleLike(token)}}>like {like}</button>)}
+                            {isLike ? 
+                            (<button className='liked' onClick={()=>{handleLike(token)}}>like {like}</button>)
+                            :
+                            (<button onClick={()=>{handleLike(token)}}>like {like}</button>)}
                         </div>
                     </div>
                 </div>
