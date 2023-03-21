@@ -213,7 +213,6 @@ function getTweet(token){
             var reponse = httpRequest.responseText;
             reponse = JSON.parse(reponse);
             setTweets(reponse);
-            console.log(reponse);
         }else{
             alert("Problème avec la requête");
         }
@@ -299,8 +298,8 @@ function tweetSpawn(tweetID){
         <>
             <Left token={token} user={user} logout={logout} tweetSpawn={tweetSpawn}/>
               <Routes>
-                <Route path="/" element={<Timeline tweets={tweets} handleReply={handleReply}/>}/>
-                <Route path="/reply/:tweetID" element={<TweetReply handleReply={handleReply} tweetSpawn={tweetSpawn}/>}/>
+                <Route path="/" element={<Timeline tweets={tweets} handleReply={handleReply} token={token}/>}/>
+                <Route path="/reply/:tweetID" element={<TweetReply handleReply={handleReply} tweetSpawn={tweetSpawn} token={token}/>}/>
                 <Route path='/profil/:userID' element={<Profil getUserTweet={getUserTweet} userTweet={userTweet} handleReply={handleReply} user={user} token={token} getUserFollow={getUserFollow}/>}/>
                 <Route path='/profil/:userID/follower'element={<Follower token={token} />}/>
                 <Route path='/profil/:userID/following' element={<Following token={token} />}/>

@@ -3,7 +3,7 @@ import { useParams} from 'react-router-dom';
 import Tweet from "../components/Tweet";
 import { NavLink } from 'react-router-dom';
 
-function TweetReply({ handleReply,tweetSpawn}){
+function TweetReply({ handleReply,tweetSpawn, token}){
     const [userT, setUserT] = useState([]);
     const tweetID = useParams();
     const [reply, setReply] = useState([]);
@@ -20,7 +20,6 @@ function TweetReply({ handleReply,tweetSpawn}){
             method: 'GET',
         });
         const json = await response.json();
-        console.log(json);
         test(tweetID,json);
     };
     function test(tweetID,reponse){
@@ -31,8 +30,25 @@ function TweetReply({ handleReply,tweetSpawn}){
     function getUserTweet(tweetID, reponse){
         console.log(tweetID);
         var replied = reponse.filter((replieder)=> replieder.tweet_id === tweetID);
-        console.log(replied);
         setUserT(replied);
+    }
+    function getTweetLike(id,callback){
+        if(callback){
+            var httpRequest = new XMLHttpRequest();
+            httpRequest.onreadystatechange = ()=>{
+              if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                if (httpRequest.status === 200) {
+                    var reponse = httpRequest.responseText;
+                    reponse = JSON.parse(reponse);
+                    callback(reponse[0].nbrLike);
+                }else{
+                    alert("Problème avec la requête");
+                }
+            }
+            };
+            httpRequest.open('GET', 'http://localhost/SAE401/site/get-tweet-stat.php?count='+id, true);
+            httpRequest.send();
+        }
     }
     useEffect(()=>{
         getAllTweet(tweetID.tweetID);
@@ -85,6 +101,8 @@ function TweetReply({ handleReply,tweetSpawn}){
                             content={tweet.content}
                             user={tweet.user_id}
                             img_link={tweet.img_link}
+                            token={token}
+                            getTweetLike={getTweetLike}
                             handleReply={handleReply}
                         />
             })) : (<>Aucune Réponse à ce Tweet</>)}

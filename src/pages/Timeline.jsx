@@ -1,10 +1,42 @@
+import { useEffect, useState } from "react";
 import Tweet from "../components/Tweet";
-function Timeline({tweets, handleReply}){
+
+function Timeline({tweets, handleReply, token}){
+    const [tweet, setTweet] = useState(tweets);
+    /*async function getTweetLike(id){
+        const response = await fetch('http://localhost/SAE401/site/get-tweet-stat.php?count='+id, {
+        method: 'GET',
+        headers: {'auth': token},
+    });
+    const json = await response.json();
+    return 1;
+    };*/
+    function getTweetLike(id,callback){
+        if(callback){
+            var httpRequest = new XMLHttpRequest();
+            httpRequest.onreadystatechange = ()=>{
+              if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                if (httpRequest.status === 200) {
+                    var reponse = httpRequest.responseText;
+                    reponse = JSON.parse(reponse);
+                    console.log(reponse);
+                    callback(reponse[0].nbrLike);
+                }else{
+                    alert("Problème avec la requête");
+                }
+            }
+            };
+            httpRequest.open('GET', 'http://localhost/SAE401/site/get-tweet-stat.php?count='+id, true);
+            httpRequest.send();
+        }
+    }
+
     return (
         <>
             <div className="homepage">
-                {tweets.map((tweet)=>{;
-                    return <Tweet 
+                {tweets.map((tweet)=>{
+                    getTweetLike(tweet);
+                    return  <Tweet   
                                 key={tweet.tweet_id} 
                                 tweet={tweet.tweet_id}
                                 pseudo={tweet.pseudo} 
@@ -12,7 +44,9 @@ function Timeline({tweets, handleReply}){
                                 content={tweet.content}
                                 user={tweet.user_id}
                                 img_link={tweet.img_link}
+                                getTweetLike={getTweetLike}
                                 handleReply={handleReply}
+                                token={token}
                             />
                 })}
             </div>

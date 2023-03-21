@@ -60,6 +60,24 @@ function Profil({ getUserTweet, userTweet, handleReply , user, getUserFollow, to
             setIsFollowed(true);
             handleFollow(token, false);
         }
+    };
+    function getTweetLike(id,callback){
+        if(callback){
+            var httpRequest = new XMLHttpRequest();
+            httpRequest.onreadystatechange = ()=>{
+              if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                if (httpRequest.status === 200) {
+                    var reponse = httpRequest.responseText;
+                    reponse = JSON.parse(reponse);
+                    callback(reponse[0].nbrLike);
+                }else{
+                    alert("Problème avec la requête");
+                }
+            }
+            };
+            httpRequest.open('GET', 'http://localhost/SAE401/site/get-tweet-stat.php?count='+id, true);
+            httpRequest.send();
+        }
     }
     useEffect(()=>{
         getUserTweet(userID.userID);
@@ -109,6 +127,8 @@ function Profil({ getUserTweet, userTweet, handleReply , user, getUserFollow, to
                     content={tweet.content} 
                     handleReply={handleReply} 
                     user={tweet.user_id}
+                    token={token}
+                    getTweetLike={getTweetLike}
                     img_link={tweet.img_link}
                     />;
                 }) ) : (

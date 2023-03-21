@@ -299,6 +299,9 @@
   margin-top: 30px;
   margin-bottom: 30px;
 }
+.tweet .tweet-center .tweetBody .tweet-actions .liked {
+  color: red;
+}
 
 @font-face {
   font-family: "font";
