@@ -42,7 +42,7 @@ function Left({token, user, logout, tweetSpawn}){
                                                 }
                                             }}>
                                             {user.pp_link ? 
-                                            (<div className="photo"></div>):(<div className="photo" style={{ backgroundImage: `url(${"/src/ressources/logoEmpty.png"})` }}></div>)}
+                                            (<div className="photo" style={{ backgroundImage: `url(${user.pp_link})` }}></div>):(<div className="photo" style={{ backgroundImage: `url(${"/src/ressources/logoEmpty.png"})` }}></div>)}
                                             <p>{user.pseudo}</p>
                                         </div>
                                     

@@ -62,9 +62,8 @@ function TweetReply({ handleReply,tweetSpawn, token, handleModal}){
                 <NavLink to={"/profil/"}>
                     <div className="replied-head">
                         <div className="replied-head-pp">
-                            <div className="the-head-replied-pp">
-
-                            </div>
+                            {tabVide(userT) === false ? (<div className="the-head-replied-pp" style={{ backgroundImage: `url(${userT[0].pp_link})` }}></div>)
+                            :(<div className="the-head-replied-pp" style={{ backgroundImage: `url(${"/src/ressources/logoEmpty.png"})` }}></div>)}
                         </div>
                         <div className="replied-author">
                             {tabVide(userT) === false ? userT[0].pseudo : "Le tableau est vide"}
@@ -93,6 +92,7 @@ function TweetReply({ handleReply,tweetSpawn, token, handleModal}){
             <div className="reply">
             {tabVide(reply) !== true ? 
             (reply.map((tweet) =>{
+                console.log(tweet)
                 return <Tweet 
                             key={tweet.tweet_id}
                             tweet={tweet.tweet_id}
@@ -102,6 +102,7 @@ function TweetReply({ handleReply,tweetSpawn, token, handleModal}){
                             user={tweet.user_id}
                             img_link={tweet.img_link}
                             token={token}
+                            pp_link={tweet.pp_link}
                             getTweetLike={getTweetLike}
                             handleReply={handleReply}
                             handleModal={handleModal}

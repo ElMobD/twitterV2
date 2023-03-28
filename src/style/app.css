@@ -89,6 +89,8 @@
   height: 50px;
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.2);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .left .left-sous .left-bottom .sous .profil .user-profil p {
   color: #7180B9;
@@ -287,6 +289,8 @@
   width: 50px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .tweet .tweet-center .tweetBody {
   flex: 2;
@@ -508,8 +512,10 @@
 .tweetReply .replied .replied-sous .replied-head .replied-head-pp .the-head-replied-pp {
   height: 75px;
   width: 75px;
-  background-color: red;
+  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .tweetReply .replied .replied-sous .replied-body {
   flex: 2;
