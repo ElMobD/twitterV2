@@ -71,7 +71,9 @@
                                height: 30px;
                                width: 30px;
                                border-radius: 50%;
-                               background-color: grey; 
+                               border: 1px solid $border-color;
+                               background-repeat: no-repeat;
+                               background-size: cover;
                             }
                         }
                         .user-search-name{
@@ -117,7 +119,9 @@
                                 height: 35px;
                                 width: 35px;
                                 border-radius: 50%;
-                                background-color: black;
+                                border: 1px solid $border-color;
+                                background-repeat: no-repeat;
+                                background-size: cover;
                             }
                         }
                     }

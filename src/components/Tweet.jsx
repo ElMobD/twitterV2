@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-function Tweet({pseudo, content, handleReply, tweet, user, img_link, getTweetLike, token}){
+function Tweet({pseudo, content, handleReply, tweet, user, img_link, getTweetLike, token,handleModal, userConn, pp_link}){
     const navigate = useNavigate();
     const url = window.location.href;
     const [like, setLike] = useState();
     const [isLike, setIsLike] = useState(false);
+    const userConnePseudo = userConn ? userConn.pseudo : undefined;
 
 
     useEffect(()=>{
@@ -65,6 +66,10 @@ function Tweet({pseudo, content, handleReply, tweet, user, img_link, getTweetLik
     return (
         <>
             <div className="tweet">
+                <div className="other-actions">
+                    {userConnePseudo === pseudo ? (<button onClick={(event)=>{handleModal(event,tweet)}}>Supprimer</button>): undefined}
+                    
+                </div>
                 <div className="tweet-center">
                 <div className="tweetHead" onClick={
                         ()=>{
@@ -76,7 +81,7 @@ function Tweet({pseudo, content, handleReply, tweet, user, img_link, getTweetLik
                                             }
                         }
                     }>
-                        <div className="pp"></div>
+                        {pp_link ? (<div className="pp" style={{ backgroundImage: `url(${pp_link})` }}></div>):(<div className="pp" style={{ backgroundImage: `url(${"/src/ressources/logoEmpty.png"})` }}></div>)}
                         <p>{pseudo}</p>
                     </div>
                     <div className="tweetBody">
@@ -98,4 +103,4 @@ function Tweet({pseudo, content, handleReply, tweet, user, img_link, getTweetLik
 }
 export default Tweet;
 
-//"/profil/"+user
+//<button onClick={(event)=>{handleModal(event)}}>Supprimer</button>

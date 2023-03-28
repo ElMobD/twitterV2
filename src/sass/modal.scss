@@ -1,0 +1,30 @@
+.modal{
+    position: fixed;
+    background-color: $bg-color;
+    border: 1px solid $border-color;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    transform: translate(-105%, 10%);
+    border-radius: 10px;
+    .sous-modal{
+        height: 100%;
+        display: grid;
+        place-items: center;
+        word-wrap: break-word;
+        padding: 20px;
+        button{
+            background-color: $error;
+            color: $bg-field;
+            border: none;
+            outline: none;
+            padding: 7px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+    }
+}
+.modal-ich{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+}

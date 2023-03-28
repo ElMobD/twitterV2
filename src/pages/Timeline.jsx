@@ -1,16 +1,8 @@
 import { useEffect, useState } from "react";
 import Tweet from "../components/Tweet";
 
-function Timeline({tweets, handleReply, token}){
-    const [tweet, setTweet] = useState(tweets);
-    /*async function getTweetLike(id){
-        const response = await fetch('http://localhost/SAE401/site/get-tweet-stat.php?count='+id, {
-        method: 'GET',
-        headers: {'auth': token},
-    });
-    const json = await response.json();
-    return 1;
-    };*/
+function Timeline({tweets, handleReply, token, handleModal}){
+
     function getTweetLike(id,callback){
         if(callback){
             var httpRequest = new XMLHttpRequest();
@@ -19,7 +11,6 @@ function Timeline({tweets, handleReply, token}){
                 if (httpRequest.status === 200) {
                     var reponse = httpRequest.responseText;
                     reponse = JSON.parse(reponse);
-                    console.log(reponse);
                     callback(reponse[0].nbrLike);
                 }else{
                     alert("Problème avec la requête");
@@ -47,6 +38,7 @@ function Timeline({tweets, handleReply, token}){
                                 getTweetLike={getTweetLike}
                                 handleReply={handleReply}
                                 token={token}
+                                handleModal={handleModal}
                             />
                 })}
             </div>

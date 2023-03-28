@@ -63,7 +63,7 @@ function Right({token}){
                                     <NavLink to={"/profil/"+user.user_id}  key={user.user_id}>
                                         <div className="user-search-div">
                                             <div className="user-search-pp">
-                                                <div className="the-fameuse-pp"></div>
+                                                {user.pp_link ? (<div className="the-fameuse-pp"></div>):(<div className="the-fameuse-pp" style={{ backgroundImage: `url(${"/src/ressources/logoEmpty.png"})` }}></div>)}
                                             </div>
                                             <div className="user-search-name">
                                                 {user.pseudo}
@@ -94,9 +94,9 @@ function Right({token}){
                                         <div className='rand-user' key={user.user_id}>
                                             <NavLink to={"/profil/"+user.user_id}>
                                                 <div className="rand-user-left">
-                                                    <div className="rand-user-pp">
-
-                                                    </div>
+                                                    {user.pp_link ? (
+                                                    <div className="rand-user-pp"></div>):
+                                                    (<div className="rand-user-pp" style={{ backgroundImage: `url(${"/src/ressources/logoEmpty.png"})` }}></div>)}
                                                 </div>
                                             </NavLink>
                                                 <div className="rand-user-center">

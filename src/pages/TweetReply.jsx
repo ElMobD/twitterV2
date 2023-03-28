@@ -3,7 +3,7 @@ import { useParams} from 'react-router-dom';
 import Tweet from "../components/Tweet";
 import { NavLink } from 'react-router-dom';
 
-function TweetReply({ handleReply,tweetSpawn, token}){
+function TweetReply({ handleReply,tweetSpawn, token, handleModal}){
     const [userT, setUserT] = useState([]);
     const tweetID = useParams();
     const [reply, setReply] = useState([]);
@@ -104,6 +104,7 @@ function TweetReply({ handleReply,tweetSpawn, token}){
                             token={token}
                             getTweetLike={getTweetLike}
                             handleReply={handleReply}
+                            handleModal={handleModal}
                         />
             })) : (<>Aucune Réponse à ce Tweet</>)}
             </div>

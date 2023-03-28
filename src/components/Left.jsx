@@ -41,9 +41,8 @@ function Left({token, user, logout, tweetSpawn}){
                                                     navigate("/profil/"+user.user_id);
                                                 }
                                             }}>
-                                            <div className="photo">
-
-                                            </div>
+                                            {user.pp_link ? 
+                                            (<div className="photo"></div>):(<div className="photo" style={{ backgroundImage: `url(${"/src/ressources/logoEmpty.png"})` }}></div>)}
                                             <p>{user.pseudo}</p>
                                         </div>
                                     

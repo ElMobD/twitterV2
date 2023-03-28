@@ -13,6 +13,8 @@ import Chat from './components/Chat';
 import TweetForm from './components/TweetForm';
 import Follower from './components/Follower';
 import Following from './components/Following';
+import Modal from './components/Modal';
+import EditProfil from './components/EditProfil';
 
 function App() {
   //   State/Variable-------------------------------------------------------------------------------------
@@ -27,6 +29,12 @@ function App() {
   const [password, setPassword] = useState("");
   const [mail, setMail] = useState("");
   const [tweetForm, setTweetForm] = useState(false);
+  const [tweetDelete, setTweetDelete] = useState();
+  const [isEditModal, setIsEditModal] = useState(false);
+  const [isModal, setIsModal] = useState(false);
+  const [isModalIch, setIsModalIch] = useState(false);
+  const [isModalIchIch, setIsModalIchIch] = useState(false);
+  const [modalPosition, setModalPosition] = useState({ x: 0, y: 0 });
   const navigate = useNavigate();
   //   Comportements-------------------------------------------------------------------------------------
 
@@ -289,6 +297,42 @@ function tweetSpawn(tweetID){
     setFormReplyID(tweetID);
   }
 }
+const handleEditProfil = ()=>{
+  if(isEditModal){
+    setIsEditModal(false);
+    setIsModalIchIch(false);
+  }else if(isEditModal === false){
+    setIsEditModal(true);
+    setIsModalIchIch(true);
+  }
+};
+const handleModal = (event, tweet)=>{
+  if(tweet){
+    setTweetDelete(tweet);
+  }
+  const posX = event.clientX;
+  const posY = event.clientY;
+  const newPosition = {x:posX, y:posY};
+  if(isModal){
+    setIsModal(false);
+    setIsModalIch(false);
+  }else if(isModal === false){
+    setIsModal(true);
+    setIsModalIch(true);
+    setModalPosition(newPosition);
+  }
+}
+const deleteTweet = (tweet) =>{
+  deleteTweetAction(tweet,token);
+};
+async function deleteTweetAction(tweet,token){
+  const response = await fetch('http://localhost/SAE401/site/delete.php?tweet='+tweet, {
+      method: 'GET',
+      headers: {'auth': token},
+    });
+    const json = await response.json();
+    console.log(json);
+};
 
   //   Render-------------------------------------------------------------------------------------
   return (
@@ -300,7 +344,7 @@ function tweetSpawn(tweetID){
               <Routes>
                 <Route path="/" element={<Timeline tweets={tweets} handleReply={handleReply} token={token}/>}/>
                 <Route path="/reply/:tweetID" element={<TweetReply handleReply={handleReply} tweetSpawn={tweetSpawn} token={token}/>}/>
-                <Route path='/profil/:userID' element={<Profil getUserTweet={getUserTweet} userTweet={userTweet} handleReply={handleReply} user={user} token={token} getUserFollow={getUserFollow}/>}/>
+                <Route path='/profil/:userID' element={<Profil getUserTweet={getUserTweet} userTweet={userTweet} handleReply={handleReply} user={user} token={token} getUserFollow={getUserFollow} handleModal={handleModal} handleEditProfil={handleEditProfil}/>}/>
                 <Route path='/profil/:userID/follower'element={<Follower token={token} />}/>
                 <Route path='/profil/:userID/following' element={<Following token={token} />}/>
               </Routes>
@@ -319,7 +363,15 @@ function tweetSpawn(tweetID){
           </>
         }/>
       </Routes>
+      {isEditModal ? (<EditProfil token={token} handleEditProfil={handleEditProfil}/>):undefined}
       {tweetForm ? (<TweetForm tweetSpawn={tweetSpawn} postTweet={postTweet} token={token} tweetID={formReplyID}/>) : undefined}
+      {isModal ? (<Modal top={modalPosition.y} left={modalPosition.x} tweet={tweetDelete} deleteTweet={deleteTweet}/>):(undefined)}
+      {isModalIch ? 
+      (<div className='modal-ich' onClick={handleModal}></div>):
+      (undefined)}
+      {isModalIchIch ? 
+      (<div className='modal-ich-ich' onClick={handleEditProfil}></div>):
+      (undefined)}
     </>
   );
 }

@@ -1,13 +1,24 @@
 import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import Tweet from "../components/Tweet";
-function Profil({ getUserTweet, userTweet, handleReply , user, getUserFollow, token}){
+function Profil({ 
+    getUserTweet, 
+    userTweet, 
+    handleReply , 
+    user,
+    getUserFollow, 
+    token, 
+    handleModal, 
+    handleEditProfil
+}){
+
     const userID = useParams();
     const [follower, setFollower] = useState();
     const [followed, setFollowed] = useState();
     const [userProfil, setUserProfil] = useState({});
     const [userFollow, setUserFollow] = useState([]);
     const [isFollowed, setIsFollowed] = useState(false);
+
     function tableauVide(tableau) {
         if (tableau.length === 0) {
           return true; // le tableau est vide
@@ -94,15 +105,13 @@ function Profil({ getUserTweet, userTweet, handleReply , user, getUserFollow, to
                 <div className="header">
                     <div className="banner">
                         <div className="banner-wallpaper">
-                            <div className="pp">
-
-                            </div>
+                            {user.pp_link? (<div className="pp"></div>):(<div className="pp" style={{ backgroundImage: `url(${"/src/ressources/logoEmpty.png"})` }}></div>)}
                         </div>
                     </div>
                     <div className="info">
 
                         <div className="perso">
-                        {userID.userID === user.user_id ? undefined : (<button id="isFollow" onClick={subV2}>{isFollowed ? ("Se désabonner"):("Suivre +")}</button>)}
+                        {userID.userID === user.user_id ? (<button id="isFollow" onClick={handleEditProfil}>Modifier</button>) : (<button id="isFollow" onClick={subV2}>{isFollowed ? ("Se désabonner"):("Suivre +")}</button>)}
                             <p id="pseudo">{userProfil.pseudo}</p>
                             <p>{userProfil.identifiant}</p>
                             <p>{userProfil.bio ? (<>{userProfil.bio}</>) : ("Pas de bio")}</p>
@@ -127,10 +136,13 @@ function Profil({ getUserTweet, userTweet, handleReply , user, getUserFollow, to
                     content={tweet.content} 
                     handleReply={handleReply} 
                     user={tweet.user_id}
+                    userConn={user}
                     token={token}
                     getTweetLike={getTweetLike}
                     img_link={tweet.img_link}
-                    />;
+                    pp_link={tweet.pp_link}
+                    handleModal={handleModal}
+                    />
                 }) ) : (
                 <>
                     <div className="tweetVide">Aucun Tweet</div>
