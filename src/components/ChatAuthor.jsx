@@ -26,7 +26,7 @@ function ChatAuthor({token}){
                             
                            return (
                                 <NavLink to={"/message/"+author.user_id} key={author.user_id}>
-                                    <Author author={author.pseudo}/>
+                                    <Author author={author.pseudo} pp_link={author.pp_link}/>
                                 </NavLink>
                             );
                         })}

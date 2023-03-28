@@ -37,9 +37,8 @@ function Following(){
                         <div className="foll-user-div" key={user.user_id}>
                             <NavLink to={"/profil/"+user.user_id}>
                             <div className="foll-pp">
-                                <div className="the-foll-pp">
-
-                                </div>
+                            {user.pp_link ? (<div className="the-foll-pp" style={{ backgroundImage: `url(${user.pp_link})` }}></div>):
+                                (<div className="the-foll-pp" style={{ backgroundImage: `url(${"/src/ressources/logoEmpty.png"})` }}></div>)}
                             </div>
                             <div className="foll-center">
                                 {user.pseudo}

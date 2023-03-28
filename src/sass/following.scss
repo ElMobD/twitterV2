@@ -39,7 +39,9 @@
                         height: 50px;
                         width: 50px;
                         border-radius: 50%;
-                        background-color: red;
+                        border: 1px solid $border-color;
+                        background-repeat: no-repeat;
+                        background-size: cover;
                     }
                 }
                 .foll-center{

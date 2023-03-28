@@ -105,7 +105,7 @@ function Profil({
                 <div className="header">
                     <div className="banner">
                         <div className="banner-wallpaper">
-                            {user.pp_link? (<div className="pp" style={{ backgroundImage: `url(${user.pp_link})` }}></div>):(<div className="pp" style={{ backgroundImage: `url(${"/src/ressources/logoEmpty.png"})` }}></div>)}
+                            {userProfil.pp_link? (<div className="pp" style={{ backgroundImage: `url(${userProfil.pp_link})` }}></div>):(<div className="pp" style={{ backgroundImage: `url(${"/src/ressources/logoEmpty.png"})` }}></div>)}
                         </div>
                     </div>
                     <div className="info">

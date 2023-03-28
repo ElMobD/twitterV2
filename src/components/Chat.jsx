@@ -69,9 +69,8 @@ function Chat({token}){
             <div className="chatCard">
                 <div className="chathead">
                     <div className="pp-chat">
-                        <div className="the-chat-pp">
-
-                        </div>
+                        {author.pp_link ? (<div className="the-chat-pp" style={{ backgroundImage: `url(${author.pp_link})` }}></div>)
+                        :(<div className="the-chat-pp" style={{ backgroundImage: `url(${"/src/ressources/logoEmpty.png"})` }}></div>)}
                     </div>
                     <p>{author.pseudo}</p>
                 </div>

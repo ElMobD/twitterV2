@@ -19,7 +19,9 @@
             .the-chat-pp{
                 height: 50px;
                 width: 50px;
-                background-color: rgb(245, 0, 0);
+                border: 1px solid $border-color;
+                background-repeat: no-repeat;
+                background-size: cover;
                 border-radius: 50%;
             }
         }

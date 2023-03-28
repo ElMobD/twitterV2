@@ -364,7 +364,7 @@ async function deleteTweetAction(tweet,token){
         }/>
       </Routes>
       {isEditModal ? (<EditProfil token={token} handleEditProfil={handleEditProfil}/>):undefined}
-      {tweetForm ? (<TweetForm tweetSpawn={tweetSpawn} postTweet={postTweet} token={token} tweetID={formReplyID}/>) : undefined}
+      {tweetForm ? (<TweetForm tweetSpawn={tweetSpawn} postTweet={postTweet} token={token} tweetID={formReplyID} user={user}/>) : undefined}
       {isModal ? (<Modal top={modalPosition.y} left={modalPosition.x} tweet={tweetDelete} deleteTweet={deleteTweet}/>):(undefined)}
       {isModalIch ? 
       (<div className='modal-ich' onClick={handleModal}></div>):

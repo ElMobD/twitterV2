@@ -95,7 +95,7 @@ function Right({token}){
                                             <NavLink to={"/profil/"+user.user_id}>
                                                 <div className="rand-user-left">
                                                     {user.pp_link ? (
-                                                    <div className="rand-user-pp"></div>):
+                                                    <div className="rand-user-pp" style={{ backgroundImage: `url(${user.pp_link})` }}></div>):
                                                     (<div className="rand-user-pp" style={{ backgroundImage: `url(${"/src/ressources/logoEmpty.png"})` }}></div>)}
                                                 </div>
                                             </NavLink>

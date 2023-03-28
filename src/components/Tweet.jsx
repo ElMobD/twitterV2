@@ -81,12 +81,13 @@ function Tweet({pseudo, content, handleReply, tweet, user, img_link, getTweetLik
                                             }
                         }
                     }>
-                        {pp_link ? (<div className="pp" style={{ backgroundImage: `url(${pp_link})` }}></div>):(<div className="pp" style={{ backgroundImage: `url(${"/src/ressources/logoEmpty.png"})` }}></div>)}
+                        {pp_link ? (<div className="pp" style={{ backgroundImage: `url(${pp_link})` }}></div>)
+                        :(<div className="pp" style={{ backgroundImage: `url(${"/src/ressources/logoEmpty.png"})` }}></div>)}
                         <p>{pseudo}</p>
                     </div>
                     <div className="tweetBody">
                         <div className="content">{content}</div>
-                        {img_link ? (<div className='tweet-picture'></div>): undefined}
+                        {img_link ? (<div className='tweet-picture' style={{ backgroundImage: `url(${img_link})` }}></div>): undefined}
                         <div className="tweet-actions">
                             <button onClick={()=>{handleReply(tweet)}}>reply</button>
                             <button>retweet</button>

@@ -38,10 +38,12 @@
                 margin-top: 50px;
             }
             .tweet-picture{
-                background-color: grey;
+                background-size: cover;
+                background-repeat: no-repeat;
                 width: 100%;
                 min-height: 250px;
                 margin-top: 25px;
+                border-radius: 10px;
             }
             .tweet-actions{
                 display: flex;

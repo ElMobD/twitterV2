@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Tweet from "../components/Tweet";
 
 function Timeline({tweets, handleReply, token, handleModal}){
-
+    console.log(tweets);
     function getTweetLike(id,callback){
         if(callback){
             var httpRequest = new XMLHttpRequest();
@@ -37,6 +37,7 @@ function Timeline({tweets, handleReply, token, handleModal}){
                                 img_link={tweet.img_link}
                                 getTweetLike={getTweetLike}
                                 handleReply={handleReply}
+                                pp_link={tweet.pp_link}
                                 token={token}
                                 handleModal={handleModal}
                             />

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function TweetForm({tweetSpawn, postTweet, token, tweetID}){
+function TweetForm({tweetSpawn, postTweet, token, tweetID, user}){
     const [replyContent, setReplyContent] = useState("");
     const [nbrChar, setNbrChar] = useState(255);
 
@@ -33,9 +33,7 @@ function TweetForm({tweetSpawn, postTweet, token, tweetID}){
                 </div>
                 <div className="tweet-body">
                     <div className="tweet-body-pp">
-                        <div className="pp">
-
-                        </div>
+                       {user.pp_link ? ( <div className="pp" style={{ backgroundImage: `url(${user.pp_link})` }}></div>):( <div className="pp" style={{ backgroundImage: `url(${"/src/ressources/logoEmpty.png"})` }}></div>)}
                     </div>
                     <div className="tweet-body-content">
                         <textarea maxLength={255} value={replyContent} placeholder={"Écrivez quelque chose..."} onChange={(event)=>{handleContent(event)}}></textarea>

@@ -301,10 +301,12 @@
   margin-top: 50px;
 }
 .tweet .tweet-center .tweetBody .tweet-picture {
-  background-color: grey;
+  background-size: cover;
+  background-repeat: no-repeat;
   width: 100%;
   min-height: 250px;
   margin-top: 25px;
+  border-radius: 10px;
 }
 .tweet .tweet-center .tweetBody .tweet-actions {
   display: flex;
@@ -662,7 +664,9 @@
 .chatCard .chathead .pp-chat .the-chat-pp {
   height: 50px;
   width: 50px;
-  background-color: rgb(245, 0, 0);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-repeat: no-repeat;
+  background-size: cover;
   border-radius: 50%;
 }
 .chatCard .chathead p {
@@ -782,7 +786,9 @@
 .chatAuthorCard .author a .chat-author-div .author-left .author-chat-pp {
   width: 50px;
   height: 50px;
-  background-color: red;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-repeat: no-repeat;
+  background-size: cover;
   border-radius: 50%;
 }
 .chatAuthorCard .author a .chat-author-div .author-right {
@@ -853,7 +859,9 @@
   height: 30px;
   width: 30px;
   border-radius: 50%;
-  background-color: red;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .tweet-filtre .tweet-form .tweet-body .tweet-body-content {
   flex: 2;
@@ -945,7 +953,9 @@
   height: 50px;
   width: 50px;
   border-radius: 50%;
-  background-color: red;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .follower-component .follower-component-body .foll-user-div a .foll-center {
   display: flex;
@@ -1004,7 +1014,9 @@
   height: 50px;
   width: 50px;
   border-radius: 50%;
-  background-color: red;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .following-component .following-component-body .foll-user-div a .foll-center {
   display: flex;

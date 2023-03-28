@@ -28,7 +28,6 @@ function TweetReply({ handleReply,tweetSpawn, token, handleModal}){
         getUserTweet(tweetID,reponse);
     };
     function getUserTweet(tweetID, reponse){
-        console.log(tweetID);
         var replied = reponse.filter((replieder)=> replieder.tweet_id === tweetID);
         setUserT(replied);
     }
@@ -92,7 +91,6 @@ function TweetReply({ handleReply,tweetSpawn, token, handleModal}){
             <div className="reply">
             {tabVide(reply) !== true ? 
             (reply.map((tweet) =>{
-                console.log(tweet)
                 return <Tweet 
                             key={tweet.tweet_id}
                             tweet={tweet.tweet_id}
