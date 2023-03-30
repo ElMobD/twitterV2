@@ -310,29 +310,32 @@ const handleModal = (event, tweet)=>{
   if(tweet){
     setTweetDelete(tweet);
   }
-  const posX = event.clientX;
-  const posY = event.clientY;
-  const newPosition = {x:posX, y:posY};
+  if(event){
+    const posX = event.clientX;
+    const posY = event.clientY;
+    const newPosition = {x:posX, y:posY};
+    setModalPosition(newPosition);
+  }
   if(isModal){
     setIsModal(false);
     setIsModalIch(false);
   }else if(isModal === false){
     setIsModal(true);
     setIsModalIch(true);
-    setModalPosition(newPosition);
   }
 }
 const deleteTweet = (tweet) =>{
-  deleteTweetAction(tweet,token);
+  deleteTweetAction(tweet,token,(tweet)=>{console.log(tweet)});
+  handleModal();
 };
-async function deleteTweetAction(tweet,token){
+async function deleteTweetAction(tweet,token,callback){
   const response = await fetch('http://localhost/SAE401/site/delete.php?tweet='+tweet, {
       method: 'GET',
       headers: {'auth': token},
     });
-    const json = await response.json();
-    console.log(json);
+    callback(tweet);
 };
+
 
   //   Render-------------------------------------------------------------------------------------
   return (
@@ -363,7 +366,7 @@ async function deleteTweetAction(tweet,token){
           </>
         }/>
       </Routes>
-      {isEditModal ? (<EditProfil token={token} handleEditProfil={handleEditProfil}/>):undefined}
+      {isEditModal ? (<EditProfil token={token} handleEditProfil={handleEditProfil} user={user}/>):undefined}
       {tweetForm ? (<TweetForm tweetSpawn={tweetSpawn} postTweet={postTweet} token={token} tweetID={formReplyID} user={user}/>) : undefined}
       {isModal ? (<Modal top={modalPosition.y} left={modalPosition.x} tweet={tweetDelete} deleteTweet={deleteTweet}/>):(undefined)}
       {isModalIch ? 

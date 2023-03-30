@@ -1,5 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FcLike } from "react-icons/fc";
+import { FcLikePlaceholder } from "react-icons/fc";
+import { FaRegCommentDots } from "react-icons/fa";
+import { AiOutlineRetweet } from "react-icons/ai";
+import { FiMoreHorizontal } from "react-icons/fi";
+
+
+
 
 
 function Tweet({pseudo, content, handleReply, tweet, user, img_link, getTweetLike, token,handleModal, userConn, pp_link}){
@@ -67,7 +75,7 @@ function Tweet({pseudo, content, handleReply, tweet, user, img_link, getTweetLik
         <>
             <div className="tweet">
                 <div className="other-actions">
-                    {userConnePseudo === pseudo ? (<button onClick={(event)=>{handleModal(event,tweet)}}>Supprimer</button>): undefined}
+                    {userConnePseudo === pseudo ? (<FiMoreHorizontal  onClick={(event)=>{handleModal(event,tweet)}}/>): undefined}
                     
                 </div>
                 <div className="tweet-center">
@@ -89,12 +97,12 @@ function Tweet({pseudo, content, handleReply, tweet, user, img_link, getTweetLik
                         <div className="content">{content}</div>
                         {img_link ? (<div className='tweet-picture' style={{ backgroundImage: `url(${img_link})` }}></div>): undefined}
                         <div className="tweet-actions">
-                            <button onClick={()=>{handleReply(tweet)}}>reply</button>
-                            <button>retweet</button>
+                            <FaRegCommentDots onClick={()=>{handleReply(tweet)}}/>
+                            <AiOutlineRetweet/>
                             {isLike ? 
-                            (<button className='liked' onClick={()=>{handleLike(token)}}>like {like}</button>)
+                            (<div><FcLike onClick={()=>{handleLike(token)}}/><span className='liked'>{like}</span></div>)
                             :
-                            (<button onClick={()=>{handleLike(token)}}>like {like}</button>)}
+                            (<div><FcLikePlaceholder onClick={()=>{handleLike(token)}}/><span>{like}</span></div>)}
                         </div>
                     </div>
                 </div>

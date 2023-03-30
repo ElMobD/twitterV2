@@ -1,3 +1,7 @@
+@font-face {
+  font-family: "first";
+  src: url("/src/font/ABeeZee-Regular.ttf");
+}
 .left {
   background-color: #ffffff;
   border-right: 1px solid rgba(0, 0, 0, 0.2);
@@ -8,6 +12,7 @@
   left: 0;
   display: grid;
   place-items: center;
+  font-family: "first";
 }
 .left .left-sous {
   height: 90%;
@@ -17,11 +22,24 @@
   align-items: center;
   justify-content: space-between;
 }
-.left .left-sous .logo {
-  width: 100px;
-  height: 100px;
-  background-color: grey;
-  border-radius: 50%;
+.left .left-sous .logo svg .cls-1 {
+  fill: #051923;
+}
+.left .left-sous .logo svg .cls-2 {
+  fill: #000814;
+}
+.left .left-sous .logo svg .cls-3 {
+  fill: #89c2d9;
+}
+.left .left-sous .logo svg .cls-4 {
+  fill: #a9d6e5;
+}
+.left .left-sous .logo svg .cls-5 {
+  fill: #468faf;
+}
+.left .left-sous .logo svg .cls-6 {
+  fill: #fff;
+  opacity: 0.3;
 }
 .left .left-sous .explo-mess {
   display: flex;
@@ -33,10 +51,19 @@
 }
 .left .left-sous .explo-mess button {
   cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  width: 80px;
+  height: 30px;
+  cursor: pointer;
+  color: white;
+  background-color: #3423A6;
 }
 .left .left-sous .explo-mess button.classic-button {
   border: none;
   background: none;
+  color: #3423A6;
+  font-size: 14px;
 }
 .left .left-sous .left-bottom {
   position: relative;
@@ -54,7 +81,7 @@
   justify-content: space-between;
 }
 .left .left-sous .left-bottom .sous .logSign a #signBut {
-  border: 2px solid #7180B9;
+  border: 2.5px solid #7180B9;
   color: #7180B9;
   width: 150px;
   height: 45px;
@@ -63,9 +90,10 @@
   transition: 200ms;
   border-radius: 12px;
   background: none;
+  font-weight: bold;
 }
 .left .left-sous .left-bottom .sous .logSign a #logBut {
-  border: 2px solid #171738;
+  border: 2.5px solid #171738;
   color: #171738;
   width: 150px;
   height: 45px;
@@ -74,6 +102,7 @@
   transition: 200ms;
   border-radius: 12px;
   background: none;
+  font-weight: bold;
 }
 .left .left-sous .left-bottom .sous .profil {
   display: flex;
@@ -85,8 +114,8 @@
   text-align: center;
 }
 .left .left-sous .left-bottom .sous .profil .user-profil .photo {
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.2);
   background-repeat: no-repeat;
@@ -96,7 +125,7 @@
   color: #7180B9;
 }
 .left .left-sous .left-bottom .sous .profil .logout button {
-  border: 2px solid red;
+  border: 2.5px solid red;
   color: red;
   width: 150px;
   height: 45px;
@@ -105,6 +134,7 @@
   transition: 200ms;
   border-radius: 12px;
   background: none;
+  font-weight: bold;
 }
 
 .right {
@@ -248,7 +278,7 @@
   flex: 1;
   height: 100%;
   color: #7180B9;
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .homepage {
@@ -270,7 +300,12 @@
 }
 .tweet .other-actions {
   position: absolute;
-  right: 0;
+  right: 5%;
+  top: 2%;
+}
+.tweet .other-actions svg {
+  cursor: pointer;
+  font-size: 25px;
 }
 .tweet .tweet-center {
   width: 70%;
@@ -285,8 +320,8 @@
   width: 100%;
 }
 .tweet .tweet-center .tweetHead .pp {
-  height: 50px;
-  width: 50px;
+  height: 75px;
+  width: 75px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 50%;
   background-repeat: no-repeat;
@@ -313,6 +348,19 @@
   justify-content: space-around;
   margin-top: 30px;
   margin-bottom: 30px;
+  align-items: center;
+}
+.tweet .tweet-center .tweetBody .tweet-actions svg {
+  font-size: 20px;
+  cursor: pointer;
+}
+.tweet .tweet-center .tweetBody .tweet-actions div {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.tweet .tweet-center .tweetBody .tweet-actions div svg {
+  font-size: 20px;
 }
 .tweet .tweet-center .tweetBody .tweet-actions .liked {
   color: red;
@@ -504,14 +552,17 @@
   width: 85%;
   height: 100%;
 }
-.tweetReply .replied .replied-sous .replied-head {
+.tweetReply .replied .replied-sous a {
+  text-decoration: none;
+}
+.tweetReply .replied .replied-sous a .replied-head {
   flex: 0.3;
   margin-bottom: 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.tweetReply .replied .replied-sous .replied-head .replied-head-pp .the-head-replied-pp {
+.tweetReply .replied .replied-sous a .replied-head .replied-head-pp .the-head-replied-pp {
   height: 75px;
   width: 75px;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -536,6 +587,12 @@
   justify-content: space-evenly;
   margin-top: 30px;
   margin-bottom: 30px;
+}
+.tweetReply .replied .replied-sous .replied-actions div {
+  cursor: pointer;
+}
+.tweetReply .replied .replied-sous .replied-actions div svg {
+  font-size: 25px;
 }
 .tweetReply .reply {
   display: grid;
@@ -566,7 +623,7 @@
   height: 100%;
 }
 .profilpage .header .banner .banner-wallpaper {
-  background-color: rgb(34, 23, 23);
+  background-color: rgb(108, 92, 92);
   border-radius: 15px;
   width: 95%;
   height: 90%;
@@ -576,9 +633,9 @@
 .profilpage .header .banner .banner-wallpaper .pp {
   height: 100px;
   width: 100px;
-  background-color: brown;
   border: 7px solid #ffffff;
   border-radius: 50%;
+  background-color: white;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -591,6 +648,17 @@
 .profilpage .header .info .perso {
   position: relative;
   width: 90%;
+}
+.profilpage .header .info .perso .foll-ering {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 250px;
+}
+.profilpage .header .info .perso .foll-ering a {
+  text-decoration: none;
+  color: #3423A6;
+  font-weight: bolder;
 }
 .profilpage .header .info .perso #isFollow {
   position: absolute;
@@ -710,10 +778,11 @@
   width: 80%;
   height: 10%;
 }
-.chatCard .mpForm button {
+.chatCard .mpForm svg {
   position: absolute;
-  right: 0;
+  right: 5%;
   transform: translateX(-75%);
+  cursor: pointer;
 }
 .chatCard .mpForm input {
   background-color: #F0F0F0;
@@ -1108,9 +1177,53 @@
 .edit-modal .edit-modal-body {
   width: 100%;
   height: 100%;
-  background-color: red;
   overflow-x: hidden;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.edit-modal .edit-modal-body .change {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  width: 90%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  color: grey;
+}
+.edit-modal .edit-modal-body .change.change-pseudo input {
+  outline: none;
+  border: none;
+  background: none;
+  padding: 10px;
+}
+.edit-modal .edit-modal-body .change.change-bio textarea {
+  outline: none;
+  border: none;
+  background: none;
+  padding: 10px;
+  min-height: 300px;
+  max-height: 300px;
+  min-width: 95%;
+  max-width: 95%;
+}
+.edit-modal .edit-modal-body .change.change-pp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 200px;
+}
+.edit-modal .edit-modal-body .change.change-pp .user-pp-img {
+  width: 75px;
+  height: 75px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .modal-ich-ich {
@@ -1123,12 +1236,17 @@
   z-index: 1000;
 }
 
+@font-face {
+  font-family: "first";
+  src: url("/src/font/ABeeZee-Regular.ttf");
+}
 body {
   margin: 0;
   padding: 0;
   width: 100vw;
   min-height: 100vh;
   background-color: #ffffff;
+  font-family: "first";
 }
 
 /*# sourceMappingURL=app.css.map */

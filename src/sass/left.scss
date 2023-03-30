@@ -1,4 +1,9 @@
 @import "var.scss";
+@font-face {
+    font-family: "first";
+    src: url("/src/font/ABeeZee-Regular.ttf");
+}
+
 .left{
     background-color: $bg-color;
     border-right: 1px solid $border-color;
@@ -9,6 +14,7 @@
     left: 0;
     display: grid;
     place-items: center;
+    font-family: "first";
     .left-sous{
         height: 90%;
         width: 100%;
@@ -17,10 +23,32 @@
         align-items: center;
         justify-content: space-between;
         .logo{
-            width: 100px;
-            height: 100px;
-            background-color: grey;
-            border-radius: 50%;
+           svg{
+            .cls-1 {
+                fill: #051923;
+              }
+        
+              .cls-2 {
+                fill: #000814;
+              }
+        
+              .cls-3 {
+                fill: #89c2d9;
+              }
+        
+              .cls-4 {
+                fill: #a9d6e5;
+              }
+        
+              .cls-5 {
+                fill: #468faf;
+              }
+        
+              .cls-6 {
+                fill: #fff;
+                opacity: .3;
+              }
+           }
         }
         .explo-mess{
             display: flex;
@@ -31,9 +59,18 @@
             height: 30%;
             button{
                 cursor: pointer;
+                border: none;
+                border-radius: 5px;
+                width: 80px;
+                height: 30px;
+                cursor: pointer;
+                color: white;
+                background-color: $tertiary;
                 &.classic-button{
                     border: none;
                     background: none;
+                    color: $tertiary;
+                    font-size: 14px;
                 }
             }
         }
@@ -51,7 +88,7 @@
                     justify-content: space-between;
                     a{
                         #signBut{
-                            border: 2px solid $quaternary;
+                            border: 2.5px solid $quaternary;
                             color: $quaternary;
                             width: 150px;
                             height: 45px;
@@ -60,9 +97,10 @@
                             transition: 200ms;
                             border-radius: 12px;
                             background: none;
+                            font-weight: bold;
                         }
                         #logBut{
-                            border: 2px solid $primary;
+                            border: 2.5px solid $primary;
                             color: $primary;
                             width: 150px;
                             height: 45px;
@@ -71,6 +109,7 @@
                             transition: 200ms;
                             border-radius: 12px;
                             background: none;
+                            font-weight: bold;
                         }  
                     }
                 }
@@ -82,8 +121,8 @@
                         cursor: pointer;
                         text-align: center;
                         .photo{
-                            width: 50px;
-                            height: 50px;
+                            width: 70px;
+                            height: 70px;
                             border-radius: 50%;
                             border: 1px solid $border-color;
                             background-repeat: no-repeat;
@@ -95,7 +134,7 @@
                     }
                     .logout{
                         button{
-                            border: 2px solid $error;
+                            border: 2.5px solid $error;
                             color: $error;
                             width: 150px;
                             height: 45px;
@@ -104,6 +143,7 @@
                             transition: 200ms;
                             border-radius: 12px;
                             background: none;
+                            font-weight: bold;
                         }
                     }
                 }

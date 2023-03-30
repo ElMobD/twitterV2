@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import Tweet from "../components/Tweet";
+
+
+
+
 function Profil({ 
     getUserTweet, 
     userTweet, 
@@ -115,8 +119,10 @@ function Profil({
                             <p id="pseudo">{userProfil.pseudo}</p>
                             <p>{userProfil.identifiant}</p>
                             <p>{userProfil.bio ? (<>{userProfil.bio}</>) : ("Pas de bio")}</p>
-                            <NavLink to={"/profil/"+userID.userID+"/following"}><span>{followed} abonnement</span></NavLink>
-                            <NavLink to={"/profil/"+userID.userID+"/follower"}><span>{follower} abonnées</span></NavLink>
+                            <div className="foll-ering">
+                                <NavLink to={"/profil/"+userID.userID+"/following"}><span>{followed} abonnement</span></NavLink>
+                                <NavLink to={"/profil/"+userID.userID+"/follower"}><span>{follower} abonnées</span></NavLink>
+                            </div>
                         </div>
                         <div className="post">
                             {userID.userID === user.user_id ? 

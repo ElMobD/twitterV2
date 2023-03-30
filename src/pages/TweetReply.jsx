@@ -2,11 +2,18 @@ import { useEffect, useState } from "react";
 import { useParams} from 'react-router-dom';
 import Tweet from "../components/Tweet";
 import { NavLink } from 'react-router-dom';
+import { FaRegCommentDots } from "react-icons/fa";
+import { AiOutlineRetweet } from "react-icons/ai";
+import { FcLike } from "react-icons/fc";
+import { FcLikePlaceholder } from "react-icons/fc";
 
 function TweetReply({ handleReply,tweetSpawn, token, handleModal}){
     const [userT, setUserT] = useState([]);
     const tweetID = useParams();
     const [reply, setReply] = useState([]);
+    const [nbrReply, setNbrReply] = useState();
+    const [like, setLike] = useState();
+    const [isLike, setIsLike] = useState(false);
 
     function tabVide (tab){
         if(tab.length === 0){
@@ -81,9 +88,15 @@ function TweetReply({ handleReply,tweetSpawn, token, handleModal}){
                             );
                         })}
                         <div className="replied-actions">
-                            <button onClick={()=>{tweetSpawn(userT[0].tweet_id)}}>Répondre</button>
-                            <button>Retweet</button>
-                            <button>Like</button>
+                            <div className="nbrReply">
+                                <FaRegCommentDots onClick={()=>{tweetSpawn(userT[0].tweet_id)}}/>
+                                <span>{nbrReply}</span>
+                            </div>
+                            <AiOutlineRetweet/>
+                            <div className="nbrLike">
+                                <FcLikePlaceholder/>
+                                <span>{like}</span>
+                            </div>
                         </div>
                     </div>
                </div>
@@ -91,6 +104,7 @@ function TweetReply({ handleReply,tweetSpawn, token, handleModal}){
             <div className="reply">
             {tabVide(reply) !== true ? 
             (reply.map((tweet) =>{
+                console.log(reply);
                 return <Tweet 
                             key={tweet.tweet_id}
                             tweet={tweet.tweet_id}

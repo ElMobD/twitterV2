@@ -16,10 +16,17 @@
 @import "modal.scss";
 @import "editProfil.scss";
 
+
+@font-face {
+    font-family: "first";
+    src: url("/src/font/ABeeZee-Regular.ttf");
+}
+
 body{
     margin: 0;
     padding: 0;
     width: 100vw;
     min-height: 100vh;
     background-color: $bg-color;
+    font-family: "first";
 }

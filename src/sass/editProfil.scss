@@ -44,10 +44,57 @@
     .edit-modal-body{
         width: 100%;
         height: 100%;
-        background-color: red;
         overflow-x: hidden;
         overflow-y: auto;
-
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .change{
+            border: 1px solid $border-color;
+            width: 90%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            color: grey;
+            &.change-pseudo{
+                input{
+                    outline: none;
+                    border: none;
+                    background: none;
+                    padding: 10px;
+                }
+            }
+            &.change-bio{
+                textarea{
+                    outline: none;
+                    border: none;
+                    background: none;
+                    padding: 10px;
+                    min-height: 300px;
+                    max-height: 300px;
+                    min-width: 95%;
+                    max-width: 95%;
+                }
+            }
+            &.change-pp{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+                min-height: 200px;
+                .user-pp-img{
+                    width: 75px;
+                    height: 75px;
+                    border: 1px solid $border-color;
+                    border-radius: 50%;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
+            }
+        }
     }
 }
 .modal-ich-ich{

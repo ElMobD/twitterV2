@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams} from 'react-router-dom';
+import { BsSendFill} from "react-icons/bs";
+
 
 
 function Chat({token}){
@@ -96,7 +98,7 @@ function Chat({token}){
                     })}
                 </div>
                 <div className="mpForm">
-                    <button onClick={()=>{postMessage(userID.mpID,token,message)}}>Send</button>
+                    <BsSendFill onClick={()=>{postMessage(userID.mpID,token,message)}}/>
                     <input type="text" placeholder='Écrire un message...' value={message} onChange={(event)=>{handleMessage(event)}}></input>
                 </div>
             </div>

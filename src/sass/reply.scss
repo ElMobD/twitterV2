@@ -14,20 +14,23 @@
             flex-direction: column;
             width: 85%;
             height: 100%;
-            .replied-head{
-                flex: 0.3;
-                margin-bottom: 40px;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                .replied-head-pp{
-                    .the-head-replied-pp{
-                        height: 75px;
-                        width: 75px;
-                        border: 1px solid $border-color;
-                        border-radius: 50%;
-                        background-size: cover;
-                        background-repeat: no-repeat;
+            a{
+                text-decoration: none;
+                .replied-head{
+                    flex: 0.3;
+                    margin-bottom: 40px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    .replied-head-pp{
+                        .the-head-replied-pp{
+                            height: 75px;
+                            width: 75px;
+                            border: 1px solid $border-color;
+                            border-radius: 50%;
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                        }
                     }
                 }
             }
@@ -50,7 +53,12 @@
                 }
             }
             .replied-actions{
-
+                div{
+                    cursor: pointer;
+                    svg{
+                        font-size: 25px;
+                    }
+                }
             }
         }
     }

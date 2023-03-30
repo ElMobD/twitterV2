@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { BsPlusLg } from "react-icons/bs";
+
 function Right({token}){
     const [randUser, setRandUser] = useState([]);
     const [search, setSearch] = useState("");
@@ -103,7 +105,7 @@ function Right({token}){
                                                     {user.pseudo}
                                                 </div>
                                             <div className="rand-user-right" onClick={()=>{follow(token, user.user_id)}}>
-                                                +
+                                                <BsPlusLg/>
                                             </div>
                                         </div>
                                     );
