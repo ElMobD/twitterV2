@@ -22,6 +22,9 @@
   align-items: center;
   justify-content: space-between;
 }
+.left .left-sous .logo svg {
+  height: 60%;
+}
 .left .left-sous .logo svg .cls-1 {
   fill: #051923;
 }
@@ -92,6 +95,18 @@
   background: none;
   font-weight: bold;
 }
+@media screen and (max-width: 1000px) {
+  .left .left-sous .left-bottom .sous .logSign a #signBut {
+    width: 130px;
+    height: 40px;
+  }
+}
+@media screen and (max-width: 850px) {
+  .left .left-sous .left-bottom .sous .logSign a #signBut {
+    width: 115px;
+    height: 35px;
+  }
+}
 .left .left-sous .left-bottom .sous .logSign a #logBut {
   border: 2.5px solid #171738;
   color: #171738;
@@ -104,12 +119,27 @@
   background: none;
   font-weight: bold;
 }
+@media screen and (max-width: 1000px) {
+  .left .left-sous .left-bottom .sous .logSign a #logBut {
+    width: 130px;
+    height: 40px;
+  }
+}
+@media screen and (max-width: 850px) {
+  .left .left-sous .left-bottom .sous .logSign a #logBut {
+    width: 115px;
+    height: 35px;
+  }
+}
 .left .left-sous .left-bottom .sous .profil {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .left .left-sous .left-bottom .sous .profil .user-profil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   cursor: pointer;
   text-align: center;
 }
@@ -135,6 +165,18 @@
   border-radius: 12px;
   background: none;
   font-weight: bold;
+}
+@media screen and (max-width: 1000px) {
+  .left .left-sous .left-bottom .sous .profil .logout button {
+    width: 130px;
+    height: 40px;
+  }
+}
+@media screen and (max-width: 850px) {
+  .left .left-sous .left-bottom .sous .profil .logout button {
+    width: 115px;
+    height: 35px;
+  }
 }
 
 .right {
@@ -199,6 +241,10 @@
 }
 .right .tendance .tend-card .user-search-result a {
   width: 100%;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: bold;
+  color: #171738;
 }
 .right .tendance .tend-card .user-search-result a .user-search-div {
   display: flex;
@@ -229,6 +275,7 @@
   border-top: 1px solid rgba(0, 0, 0, 0.2);
   height: 50vh;
   width: 100%;
+  color: #171738;
 }
 .right .sugg .sugg-head {
   text-align: center;
@@ -241,6 +288,15 @@
   width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
+}
+.right .sugg .sugg-render .suggFalse {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+.right .sugg .sugg-render .suggFalse div {
+  font-size: 12px;
 }
 .right .sugg .sugg-render .suggTrue {
   width: 100%;
@@ -623,7 +679,7 @@
   height: 100%;
 }
 .profilpage .header .banner .banner-wallpaper {
-  background-color: rgb(108, 92, 92);
+  background-color: #2E1760;
   border-radius: 15px;
   width: 95%;
   height: 90%;

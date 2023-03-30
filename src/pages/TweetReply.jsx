@@ -6,6 +6,8 @@ import { FaRegCommentDots } from "react-icons/fa";
 import { AiOutlineRetweet } from "react-icons/ai";
 import { FcLike } from "react-icons/fc";
 import { FcLikePlaceholder } from "react-icons/fc";
+import { MdOutlineQuestionAnswer } from "react-icons/md";
+
 
 function TweetReply({ handleReply,tweetSpawn, token, handleModal}){
     const [userT, setUserT] = useState([]);
@@ -54,6 +56,8 @@ function TweetReply({ handleReply,tweetSpawn, token, handleModal}){
             };
             httpRequest.open('GET', 'http://localhost/SAE401/site/get-tweet-stat.php?count='+id, true);
             httpRequest.send();
+        }else{
+            console.log("Caca");
         }
     }
     useEffect(()=>{
@@ -89,7 +93,7 @@ function TweetReply({ handleReply,tweetSpawn, token, handleModal}){
                         })}
                         <div className="replied-actions">
                             <div className="nbrReply">
-                                <FaRegCommentDots onClick={()=>{tweetSpawn(userT[0].tweet_id)}}/>
+                                <MdOutlineQuestionAnswer onClick={()=>{tweetSpawn(userT[0].tweet_id)}}/>
                                 <span>{nbrReply}</span>
                             </div>
                             <AiOutlineRetweet/>

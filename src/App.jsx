@@ -287,14 +287,18 @@ async function getUserFollow(token,callback) {
   }
 }
 function tweetSpawn(tweetID){
-  if(tweetForm === true){
-    setTweetForm(false);
-  }else if(tweetForm === false){
-    setTweetForm(true);
-  }
-
-  if(typeof tweetID === "string"){
-    setFormReplyID(tweetID);
+  if(!token){
+    alert("Vous devez vous connecter");
+  }else{
+    if(tweetForm === true){
+      setTweetForm(false);
+    }else if(tweetForm === false){
+      setTweetForm(true);
+    }
+  
+    if(typeof tweetID === "string"){
+      setFormReplyID(tweetID);
+    }
   }
 }
 const handleEditProfil = ()=>{

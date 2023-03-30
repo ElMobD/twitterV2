@@ -85,7 +85,10 @@ function Right({token}){
                         {token === null ? 
                         (
                         <>
-                            <div className="suggFalse">Vous devez vous connecter pour accéder au profils suggérée. Pour vous connecter, cliquez <NavLink to="/login">ici</NavLink>.
+                            <div className="suggFalse">
+                                <div>
+                                Vous devez vous connecter pour accéder au profils suggérée. Pour vous connecter, cliquez <NavLink to="/login">ici</NavLink>.
+                                </div>
                             </div>
                         </>
                         ):(
