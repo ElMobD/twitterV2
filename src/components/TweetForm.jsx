@@ -45,6 +45,7 @@ function TweetForm({tweetSpawn, postTweet, token, tweetID, user}){
                     {nbrChar < 170 ? (<div className='nbr-char yellow'>{nbrChar}</div>): undefined}
                     {nbrChar < 85 ? (<div className='nbr-char orange'>{nbrChar}</div>): undefined}
                     {nbrChar < 30 ? (<div className='nbr-char red'>{nbrChar}</div>): undefined}
+                    <input type="file"/>
                 </div>
             </div>
         </div>
