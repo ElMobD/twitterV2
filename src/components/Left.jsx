@@ -55,7 +55,6 @@ function Left({token, user, logout, tweetSpawn}){
                                 <div className="profil">
                                     
                                         <div className="user-profil" onClick={()=>{
-                                                console.log(url);
                                                 if(url === "http://localhost:5181/profil/"+user.user_id){
                                                     console.log("C'est dejà l'url.");
                                                 }else{

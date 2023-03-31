@@ -13,6 +13,7 @@
   display: grid;
   place-items: center;
   font-family: "first";
+  z-index: 2;
 }
 .left .left-sous {
   height: 90%;

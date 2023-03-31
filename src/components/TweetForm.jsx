@@ -23,7 +23,7 @@ function TweetForm({tweetSpawn, postTweet, token, tweetID, user}){
         tweetSpawn();
     };
     return (
-        <div className="tweet-filtre" onClick={()=>{console.log(tweetID)}}>
+        <div className="tweet-filtre">
             <div className="tweet-form">
                 <div className="tweet-head">
                     <div className="tweet-head-sous">

@@ -80,18 +80,17 @@ function TweetReply({ handleReply,tweetSpawn, token, handleModal}){
         }
     }
     async function getAnswer(tweetID){
-        console.log(tweetID);
         const response = await fetch("http://localhost/SAE401/site/get-tweet.php?answer="+tweetID,{
             method: 'GET'
         });
         const json = await response.json();
         setAnswer(json[0].pseudo);
     }
+    if(tabVide(userT) === false && userT[0].origin_id){
+        getAnswer(userT[0].origin_id);
+    }
     useEffect(()=>{
         getAllTweet(tweetID.tweetID);
-        if(tabVide(userT) === false && userT[0].origin_id){
-            getAnswer(userT[0].origin_id);
-        }
     },[tweetID]);
     
     return (

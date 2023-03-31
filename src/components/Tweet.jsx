@@ -103,7 +103,6 @@ function Tweet({pseudo, content, handleReply, tweet, user, img_link, getTweetLik
                 <div className="tweet-center">
                 <div className="tweetHead" onClick={
                         ()=>{
-                            console.log(user);
                                             if(url === "http://localhost:5181/profil/"+user){
                                                 console.log("C'est dejà l'url.");
                                             }else{

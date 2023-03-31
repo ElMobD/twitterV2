@@ -10,7 +10,6 @@ function ChatAuthor({token}){
             headers: {'auth': token},
         });
         const json = await response.json();
-        console.log(json);
         setAuthor(json);
     }
     useEffect(()=>{

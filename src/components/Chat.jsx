@@ -20,7 +20,6 @@ function Chat({token}){
         });
         const json = await response.json();
         setChat(json);
-        console.log(json);
     }
 
 

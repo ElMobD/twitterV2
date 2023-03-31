@@ -19,8 +19,6 @@ function Right({token}){
           });
           const json = await response.json();
           setUserSearch(json);
-        }else{
-          console.log("C'est pas au dessus de 3");
         }
     }
     async function getRandomUser(token) {
@@ -31,8 +29,6 @@ function Right({token}){
           });
           const json = await response.json();
           setRandUser(json);
-        }else{
-          console.log("Y'a pas de token brow");
         }
     }
     async function follow(token, user) {

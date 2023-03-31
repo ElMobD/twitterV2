@@ -128,11 +128,7 @@ async function register(mail,pseudo,identifiant,password){
       }else if(json === 22){
         alert("Compte déjà Créer");
       }
-    }else{
-      console.log("L'identifiant n'est pas bon brow.")
     }
-  }else{
-    console.log("Il manque des truc la");
   }
 }
 function login(pseudo, password, callback){
@@ -261,8 +257,6 @@ async function postTweet(token,content,repliedID) {
       headers: {'auth': token},
       body: JSON.stringify({"content":  content, "replied": repliedID})
   });
-  const json = await response.json();
-  console.log(json);
   }else{
     var repliedID = "NULL";
     const response = await fetch('http://localhost/SAE401/site/post-user-tweet.php',{
@@ -270,8 +264,6 @@ async function postTweet(token,content,repliedID) {
       headers: {'auth': token},
       body: JSON.stringify({"content":  content, "replied": repliedID})
   });
-  const json = await response.json();
-  console.log(json);
   };
 }
 async function getUserFollow(token,callback) {
@@ -282,8 +274,6 @@ async function getUserFollow(token,callback) {
     });
     const json = await response.json();
     callback(json);
-  }else{
-    console.log("Y'a pas de token brow");
   }
 }
 function tweetSpawn(tweetID){
@@ -329,7 +319,10 @@ const handleModal = (event, tweet)=>{
   }
 }
 const deleteTweet = (tweet) =>{
-  deleteTweetAction(tweet,token,(tweet)=>{console.log(tweet)});
+  deleteTweetAction(tweet,token,(tweetID)=>{
+    var newUserTweet = userTweet.filter((tweet)=> tweet.tweet_id !== tweetID);
+    setUsertweet(newUserTweet);
+  });
   handleModal();
 };
 async function deleteTweetAction(tweet,token,callback){
@@ -337,7 +330,7 @@ async function deleteTweetAction(tweet,token,callback){
       method: 'GET',
       headers: {'auth': token},
     });
-    callback(tweet);
+  callback(tweet);
 };
 
 
