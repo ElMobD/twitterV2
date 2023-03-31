@@ -15,6 +15,7 @@ function TweetReply({ handleReply,tweetSpawn, token, handleModal}){
     const [reply, setReply] = useState([]);
     const [nbrReply, setNbrReply] = useState();
     const [like, setLike] = useState();
+    const [answer, setAnswer] = useState();
     const [isLike, setIsLike] = useState(false);
 
     function tabVide (tab){
@@ -57,22 +58,56 @@ function TweetReply({ handleReply,tweetSpawn, token, handleModal}){
             httpRequest.open('GET', 'http://localhost/SAE401/site/get-tweet-stat.php?count='+id, true);
             httpRequest.send();
         }else{
-            console.log("Caca");
+            console.log("error");
         }
+    }
+    function getTweetComment(id,callback){
+        if(callback){
+            var httpRequest = new XMLHttpRequest();
+            httpRequest.onreadystatechange = ()=>{
+              if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                if (httpRequest.status === 200) {
+                    var reponse = httpRequest.responseText;
+                    reponse = JSON.parse(reponse);
+                    callback(reponse[0].nbrComment);
+                }else{
+                    alert("Problème avec la requête");
+                }
+            }
+            };
+            httpRequest.open('GET', 'http://localhost/SAE401/site/get-tweet-stat.php?comment='+id, true);
+            httpRequest.send();
+        }
+    }
+    async function getAnswer(tweetID){
+        console.log(tweetID);
+        const response = await fetch("http://localhost/SAE401/site/get-tweet.php?answer="+tweetID,{
+            method: 'GET'
+        });
+        const json = await response.json();
+        setAnswer(json[0].pseudo);
     }
     useEffect(()=>{
         getAllTweet(tweetID.tweetID);
+        if(tabVide(userT) === false && userT[0].origin_id){
+            getAnswer(userT[0].origin_id);
+        }
     },[tweetID]);
     
     return (
         <>
         <div className="tweetReply">
             <div className="replied">
+                <NavLink to={tabVide(userT) === false && userT[0].origin_id && userT[0].origin_id !== "null" ? "/reply/"+userT[0].origin_id :undefined}>
+                    {tabVide(userT) === false && userT[0].origin_id && userT[0].origin_id !== "null" ?
+                    (<div className="answer">Replying to {answer ? answer : undefined}</div>):undefined}
+                </NavLink>
                <div className="replied-sous">
-                <NavLink to={"/profil/"}>
+                <NavLink to={tabVide(userT) === false ? "/profil/"+userT[0].user_id : undefined}>
                     <div className="replied-head">
                         <div className="replied-head-pp">
-                            {tabVide(userT) === false ? (<div className="the-head-replied-pp" style={{ backgroundImage: `url(${userT[0].pp_link})` }}></div>)
+                            {tabVide(userT) === false && userT[0].pp_link && userT[0].pp_link !== 'null' ? 
+                            (<div className="the-head-replied-pp" style={{ backgroundImage: `url(${userT[0].pp_link})` }}></div>)
                             :(<div className="the-head-replied-pp" style={{ backgroundImage: `url(${"/src/ressources/logoEmpty.png"})` }}></div>)}
                         </div>
                         <div className="replied-author">
@@ -108,7 +143,6 @@ function TweetReply({ handleReply,tweetSpawn, token, handleModal}){
             <div className="reply">
             {tabVide(reply) !== true ? 
             (reply.map((tweet) =>{
-                console.log(reply);
                 return <Tweet 
                             key={tweet.tweet_id}
                             tweet={tweet.tweet_id}
@@ -120,8 +154,10 @@ function TweetReply({ handleReply,tweetSpawn, token, handleModal}){
                             token={token}
                             pp_link={tweet.pp_link}
                             getTweetLike={getTweetLike}
+                            getTweetComment={getTweetComment}
                             handleReply={handleReply}
                             handleModal={handleModal}
+                            origin_id={tweet.origin_id}
                         />
             })) : (<>Aucune Réponse à ce Tweet</>)}
             </div>

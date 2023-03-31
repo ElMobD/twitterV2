@@ -94,6 +94,24 @@ function Profil({
             httpRequest.send();
         }
     }
+    function getTweetComment(id,callback){
+        if(callback){
+            var httpRequest = new XMLHttpRequest();
+            httpRequest.onreadystatechange = ()=>{
+              if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                if (httpRequest.status === 200) {
+                    var reponse = httpRequest.responseText;
+                    reponse = JSON.parse(reponse);
+                    callback(reponse[0].nbrComment);
+                }else{
+                    alert("Problème avec la requête");
+                }
+            }
+            };
+            httpRequest.open('GET', 'http://localhost/SAE401/site/get-tweet-stat.php?comment='+id, true);
+            httpRequest.send();
+        }
+    }
     useEffect(()=>{
         getUserTweet(userID.userID);
           getStat(userID.userID);
@@ -109,7 +127,8 @@ function Profil({
                 <div className="header">
                     <div className="banner">
                         <div className="banner-wallpaper">
-                            {userProfil.pp_link? (<div className="pp" style={{ backgroundImage: `url(${userProfil.pp_link})` }}></div>):(<div className="pp" style={{ backgroundImage: `url(${"/src/ressources/logoEmpty.png"})` }}></div>)}
+                            {userProfil.pp_link !== "null" && userProfil.pp_link ? (<div className="pp" style={{ backgroundImage: `url(${userProfil.pp_link})` }}></div>)
+                            :(<div className="pp" style={{ backgroundImage: `url(${"/src/ressources/logoEmpty.png"})` }}></div>)}
                         </div>
                     </div>
                     <div className="info">
@@ -145,8 +164,10 @@ function Profil({
                     userConn={user}
                     token={token}
                     getTweetLike={getTweetLike}
+                    getTweetComment={getTweetComment}
                     img_link={tweet.img_link}
                     pp_link={tweet.pp_link}
+                    origin_id={tweet.origin_id}
                     handleModal={handleModal}
                     />
                 }) ) : (

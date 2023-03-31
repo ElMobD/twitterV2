@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { FcLike } from "react-icons/fc";
 import { FcLikePlaceholder } from "react-icons/fc";
 import { FaRegCommentDots } from "react-icons/fa";
@@ -10,11 +10,14 @@ import { FiMoreHorizontal } from "react-icons/fi";
 
 
 
-function Tweet({pseudo, content, handleReply, tweet, user, img_link, getTweetLike, token,handleModal, userConn, pp_link}){
+function Tweet({pseudo, content, handleReply, tweet, user, img_link, getTweetLike, 
+    token,handleModal, userConn, pp_link, origin_id, getTweetComment}){
     const navigate = useNavigate();
     const url = window.location.href;
     const [like, setLike] = useState();
+    const [comment, setCommment] = useState();
     const [isLike, setIsLike] = useState(false);
+    const [answer, setAnswer] = useState();
     const userConnePseudo = userConn ? userConn.pseudo : undefined;
 
 
@@ -23,7 +26,14 @@ function Tweet({pseudo, content, handleReply, tweet, user, img_link, getTweetLik
             number = parseInt(number);
             setLike(number);
         });
+        getTweetComment(tweet,(number)=>{
+            number = parseInt(number);
+            setCommment(number);
+        });
         verifIsLike(token);
+        if(origin_id){
+            getAnswer(origin_id);
+        }
     },[]);
     function tableauVide(tableau) {
         if (tableau.length === 0) {
@@ -71,9 +81,21 @@ function Tweet({pseudo, content, handleReply, tweet, user, img_link, getTweetLik
             }
         }
     }
+    async function getAnswer(tweetID){
+        const response = await fetch("http://localhost/SAE401/site/get-tweet.php?answer="+tweetID,{
+            method: 'GET'
+        });
+        const json = await response.json();
+        setAnswer(json[0].pseudo);
+    }
     return (
         <>
             <div className="tweet">
+                {origin_id && origin_id !== "null" ? (
+                    <NavLink to={origin_id && origin_id !== "null" ? "/reply/"+origin_id:undefined}>
+                        <div className='tweet-anwser'>Replying to <span>{answer}</span></div>
+                    </NavLink>
+                ) : undefined}
                 <div className="other-actions">
                     {userConnePseudo === pseudo ? (<FiMoreHorizontal  onClick={(event)=>{handleModal(event,tweet)}}/>): undefined}
                     
@@ -97,7 +119,7 @@ function Tweet({pseudo, content, handleReply, tweet, user, img_link, getTweetLik
                         <div className="content">{content}</div>
                         {img_link ? (<div className='tweet-picture' style={{ backgroundImage: `url(${img_link})` }}></div>): undefined}
                         <div className="tweet-actions">
-                            <FaRegCommentDots onClick={()=>{handleReply(tweet)}}/>
+                            <div><FaRegCommentDots onClick={()=>{handleReply(tweet)}}/><span>{comment}</span></div>
                             <AiOutlineRetweet/>
                             {isLike ? 
                             (<div><FcLike onClick={()=>{handleLike(token)}}/><span className='liked'>{like}</span></div>)
