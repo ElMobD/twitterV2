@@ -15,7 +15,9 @@ function Signin({pseudo,mail,password,identifiant, handleIdentifiant, handleMail
     };
     const errorPseudo = (value)=>{
         if(value.length >= 5 ){
+            setPseudoError(false);
         }else if(value.length < 5){
+            setPseudoError(true);
         }
      };
      const errorIden = (value)=>{
@@ -33,7 +35,9 @@ function Signin({pseudo,mail,password,identifiant, handleIdentifiant, handleMail
      };
      const errorPassword = (value)=>{
         if(value.length >= 5 ){
+            setPasswordError(false);
         }else if(value.length < 5){
+            setPasswordError(true);
         }
      };
     return (
@@ -47,26 +51,32 @@ function Signin({pseudo,mail,password,identifiant, handleIdentifiant, handleMail
                         <div className="field">
                             <label>Adresse-mail</label>
                             <input type="text" value={mail} onChange={(event)=>{handleMail(event,errorMail)}}/>
-                            {mailError ? (<div className='error'>Y'a une erreur</div>):(<div className='good'>Tout est bon</div>)}
+                            {mailError ? (<div className='error'>Vous ne remplissez pas toutes les conditions : (5 caractères minimum)</div>):(<div className='good'>Bon</div>)}
                         </div>
                         <div className="field">
                             <label>Pseudo</label>
                             <input type="text" value={pseudo} onChange={(event) =>{handlePseudo(event, errorPseudo)}}/>
-                            {pseudoError ? (<div className='error'>Y'a une erreur</div>):(<div className='good'>Tout est bon</div>)}
+                            {pseudoError ? (<div className='error'>Vous ne remplissez pas toutes les conditions : (5 caractères minimum)</div>):(<div className='good'>Bon</div>)}
                         </div>
                         <div className="field">
                             <label>Identifiant</label>
                             <input type="text"  value={identifiant} onChange={(event)=>{handleIdentifiant(event,errorIden)}}/>
-                            {idenError ? (<div className='error'>Y'a une erreur</div>):(<div className='good'>Tout est bon</div>)}
+                            {idenError ? (<div className='error'>Vous ne remplissez pas toutes les conditions : (5 caractères minimum, commence par '@')</div>):(<div className='good'>Bon</div>)}
                         </div>
                         <div className="field">
                             <label>Mot de passe</label>
                             <input type="password"  value={password} onChange={(event)=>{handlePassword(event, errorPassword)}}/>
-                            {passwordError ? (<div className='error'>Y'a une erreur</div>):(<div className='good'>Tout est bon</div>)}
+                            {passwordError ? (<div className='error'>Vous ne remplissez pas toutes les conditions : (5 caractères minimum)</div>):(<div className='good'>Bon</div>)}
                         </div>
                     </div>
                     <div className="sign-button">
-                        <button onClick={()=>{register(mail,pseudo,identifiant,password)}}>Inscription</button>
+                        <button onClick={()=>{
+                            if(!mailError && !pseudoError && !idenError && !passwordError){
+                                register(mail,pseudo,identifiant,password);
+                            }else{
+                                console.log("Vous ne remplissez pas tous les conditions.");
+                            }
+                            }}>Inscription</button>
                     </div>
                     <div className="sign-text">
                         <p>Vous avez déjà un compte ?<NavLink to="/login">Connectez Vous.</NavLink></p>

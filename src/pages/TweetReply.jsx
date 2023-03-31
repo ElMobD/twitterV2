@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useParams} from 'react-router-dom';
 import Tweet from "../components/Tweet";
-import { NavLink } from 'react-router-dom';
 import { FaRegCommentDots } from "react-icons/fa";
 import { AiOutlineRetweet } from "react-icons/ai";
 import { FcLike } from "react-icons/fc";
@@ -10,6 +10,7 @@ import { MdOutlineQuestionAnswer } from "react-icons/md";
 
 
 function TweetReply({ handleReply,tweetSpawn, token, handleModal}){
+    const navigate = useNavigate();
     const [userT, setUserT] = useState([]);
     const tweetID = useParams();
     const [reply, setReply] = useState([]);
@@ -127,7 +128,14 @@ function TweetReply({ handleReply,tweetSpawn, token, handleModal}){
                         })}
                         <div className="replied-actions">
                             <div className="nbrReply">
-                                <MdOutlineQuestionAnswer onClick={()=>{tweetSpawn(userT[0].tweet_id)}}/>
+                                <MdOutlineQuestionAnswer onClick={()=>{
+                                    if(token){
+                                        tweetSpawn(userT[0].tweet_id)
+                                    }else{
+                                        alert("Veuillez vous connecter");
+                                        navigate("/login");
+                                    }
+                                    }}/>
                                 <span>{nbrReply}</span>
                             </div>
                             <AiOutlineRetweet/>

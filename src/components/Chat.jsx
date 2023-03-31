@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useParams} from 'react-router-dom';
+import { useParams, NavLink, useNavigate} from 'react-router-dom';
 import { BsSendFill} from "react-icons/bs";
 
 
 
 function Chat({token}){
     const userID = useParams();
+    const navigate = useNavigate();
     const [author, setAuthor] = useState({});
     const [chat, setChat] = useState([]);
     const [message, setMessage] = useState("");
@@ -68,13 +69,13 @@ function Chat({token}){
 
     return (
             <div className="chatCard">
-                <div className="chathead">
-                    <div className="pp-chat">
-                        {author.pp_link ? (<div className="the-chat-pp" style={{ backgroundImage: `url(${author.pp_link})` }}></div>)
-                        :(<div className="the-chat-pp" style={{ backgroundImage: `url(${"/src/ressources/logoEmpty.png"})` }}></div>)}
+                    <div className="chathead" onClick={()=>{author ? navigate("/profil/"+author.user_id): undefined}}>
+                        <div className="pp-chat">
+                            {author.pp_link ? (<div className="the-chat-pp" style={{ backgroundImage: `url(${author.pp_link})` }}></div>)
+                            :(<div className="the-chat-pp" style={{ backgroundImage: `url(${"/src/ressources/logoEmpty.png"})` }}></div>)}
+                        </div>
+                        <p>{author.pseudo}</p>
                     </div>
-                    <p>{author.pseudo}</p>
-                </div>
                 <div className="the-chat">
                     {chat.map((chat)=>{
                         return (

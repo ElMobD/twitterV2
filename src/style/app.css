@@ -456,6 +456,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-evenly;
 }
 .loginpage .login-card .login-card {
   width: 100%;
@@ -488,6 +489,13 @@
   border-radius: 7px;
   padding: 15px;
   background-color: #F0F0F0;
+}
+.loginpage .login-card .login-text {
+  height: 100%;
+}
+.loginpage .login-card .login-text a {
+  text-decoration: none;
+  color: #3423A6;
 }
 .loginpage .login-card .login-button {
   display: grid;
@@ -567,9 +575,11 @@
 }
 .signpage .sign-card .sign-field .field .good {
   color: green;
+  font-size: 12px;
 }
 .signpage .sign-card .sign-field .field .error {
   color: red;
+  font-size: 12px;
 }
 .signpage .sign-card .sign-button {
   display: grid;

@@ -30,7 +30,9 @@ function Tweet({pseudo, content, handleReply, tweet, user, img_link, getTweetLik
             number = parseInt(number);
             setCommment(number);
         });
-        verifIsLike(token);
+        if(token){
+            verifIsLike(token);
+        }
         if(origin_id){
             getAnswer(origin_id);
         }
@@ -123,7 +125,12 @@ function Tweet({pseudo, content, handleReply, tweet, user, img_link, getTweetLik
                             {isLike ? 
                             (<div><FcLike onClick={()=>{handleLike(token)}}/><span className='liked'>{like}</span></div>)
                             :
-                            (<div><FcLikePlaceholder onClick={()=>{handleLike(token)}}/><span>{like}</span></div>)}
+                            (<div><FcLikePlaceholder onClick={()=>{if(token){
+                                handleLike(token);
+                            }else{
+                                alert("Veuillez vous connecter");
+                                navigate("/login");
+                            }}}/><span>{like}</span></div>)}
                         </div>
                     </div>
                 </div>

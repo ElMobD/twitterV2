@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useParams, useNavigate } from "react-router-dom";
 import Tweet from "../components/Tweet";
 
 
@@ -17,6 +17,7 @@ function Profil({
 }){
 
     const userID = useParams();
+    const navigate = useNavigate();
     const [follower, setFollower] = useState();
     const [followed, setFollowed] = useState();
     const [userProfil, setUserProfil] = useState({});
@@ -134,7 +135,14 @@ function Profil({
                     <div className="info">
 
                         <div className="perso">
-                        {userID.userID === user.user_id ? (<button id="isFollow" onClick={handleEditProfil}>Modifier</button>) : (<button id="isFollow" onClick={subV2}>{isFollowed ? ("Se désabonner"):("Suivre +")}</button>)}
+                        {userID.userID === user.user_id ? (<button id="isFollow" onClick={()=>{handleEditProfil()}}>Modifier</button>) : (<button id="isFollow" onClick={()=>{
+                            if(token){
+                                subV2();
+                            }else{
+                                alert("Veuillez vous connecter");
+                                navigate("/login");
+                            }
+                            }}>{isFollowed ? ("Se désabonner"):("Suivre +")}</button>)}
                             <p id="pseudo">{userProfil.pseudo}</p>
                             <p>{userProfil.identifiant}</p>
                             <p>{userProfil.bio ? (<>{userProfil.bio}</>) : ("Pas de bio")}</p>
