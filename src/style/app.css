@@ -967,7 +967,7 @@
   z-index: 2;
 }
 .tweet-filtre .tweet-form {
-  height: 320px;
+  min-height: 350px;
   width: 500px;
   background-color: #ffffff;
   border-radius: 17px;
@@ -1068,14 +1068,13 @@
   color: red;
 }
 .tweet-filtre .tweet-form-valid input[type=file]::-webkit-file-upload-button {
-  position: absolute;
   left: 0;
-  padding: 12px;
-  background-color: #4CAF50; /* Changer la couleur de fond du bouton */
-  color: #fff; /* Changer la couleur du texte du bouton */
-  border: none; /* Supprimer la bordure du bouton */ /* Ajouter un peu de remplissage pour une meilleure apparence */
-  border-radius: 5px; /* Ajouter un arrondi aux coins du bouton */
-  cursor: pointer; /* Changer le curseur de la souris au survol */
+  padding: 7px;
+  background-color: #7180B9;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .follower-component {
@@ -1326,6 +1325,15 @@
   border-radius: 50%;
   background-repeat: no-repeat;
   background-size: cover;
+}
+.edit-modal .edit-modal-body .change.change-pp input[type=file]::-webkit-file-upload-button {
+  left: 0;
+  padding: 7px;
+  background-color: #7180B9;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .modal-ich-ich {

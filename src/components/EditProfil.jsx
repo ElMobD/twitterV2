@@ -39,7 +39,7 @@ function EditProfil({token, handleEditProfil, user}){
         });
         handleEditProfil();
         setPseudo("");
-        setBio('');
+        setBio("");
     };
     return (
         <div className="edit-modal">
@@ -55,12 +55,12 @@ function EditProfil({token, handleEditProfil, user}){
                     </div>
                     <div className="change change-bio">
                         <label>Bio</label>
-                        <textarea maxLength={1000} value={bio ? bio:""} onChange={handleBio}/>
+                        <textarea maxLength={1000} value={bio && bio !== null ? bio :""} onChange={handleBio}/>
                     </div>
                     <div className="change change-pp">
                         <label>Choisissez une image pour votre photo de profil</label>
                         {user_pp ? (<div className='user-pp-img' style={{ backgroundImage: `url(${"/src/ressources/logoEmpty.png"})` }}></div>):undefined}
-                        <input type="file" onChange={verif} encType="multipart/form-data"></input>
+                        <input type="file" onChange={verif}></input>
                         <div className="file-error">{error}</div>
                     </div>
             </div>

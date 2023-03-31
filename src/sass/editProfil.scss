@@ -93,6 +93,15 @@
                     background-repeat: no-repeat;
                     background-size: cover;
                 }
+                input[type="file"]::-webkit-file-upload-button {
+                    left: 0;
+                    padding: 7px;
+                    background-color: $quaternary;
+                    color: #fff; 
+                    border: none; 
+                    border-radius: 5px; 
+                    cursor: pointer; 
+                }
             }
         }
     }

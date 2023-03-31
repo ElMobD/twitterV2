@@ -257,13 +257,21 @@ async function postTweet(token,content,repliedID) {
       headers: {'auth': token},
       body: JSON.stringify({"content":  content, "replied": repliedID})
   });
+  const json = await response.json();
+  console.log(json);
   }else{
     var repliedID = "NULL";
     const response = await fetch('http://localhost/SAE401/site/post-user-tweet.php',{
       method: 'POST',
       headers: {'auth': token},
-      body: JSON.stringify({"content":  content, "replied": repliedID})
+      body: JSON.stringify({
+        "content":  content, 
+        "replied": repliedID,
+        "image": "test"
+      })
   });
+  const json = await response.json();
+  console.log(json);
   };
 }
 async function getUserFollow(token,callback) {
