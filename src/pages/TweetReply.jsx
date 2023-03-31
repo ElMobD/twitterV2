@@ -99,7 +99,7 @@ function TweetReply({ handleReply,tweetSpawn, token, handleModal}){
             <div className="replied">
                 <NavLink to={tabVide(userT) === false && userT[0].origin_id && userT[0].origin_id !== "null" ? "/reply/"+userT[0].origin_id :undefined}>
                     {tabVide(userT) === false && userT[0].origin_id && userT[0].origin_id !== "null" ?
-                    (<div className="answer">Replying to {answer ? answer : undefined}</div>):undefined}
+                    (<div className="answer">Replying to <span>{answer ? answer : undefined}</span></div>):undefined}
                 </NavLink>
                <div className="replied-sous">
                 <NavLink to={tabVide(userT) === false ? "/profil/"+userT[0].user_id : undefined}>

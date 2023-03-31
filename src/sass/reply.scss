@@ -5,7 +5,7 @@
     width: 60vw;
     .replied{
         position: relative;
-        padding-top: 25px;
+        padding-top: 50px;
         border-bottom: 1px solid $border-color;
         display: flex;
         flex-direction: column;
@@ -15,6 +15,13 @@
             position: absolute;
             top: 0;
             left: 0;
+            font-size: 14px;
+            text-decoration: none;
+            color: $quaternary;
+            transform: translate(25%,50%);
+            span{
+                color: $primary;
+            }
         }
         .replied-sous{
             display: flex;
