@@ -22,7 +22,7 @@ foreach(getallheaders() as $name => $value){
         $result= $getSession->fetchAll();
         if($result[0]["token"]){
             $authentification = true;
-            $userId = $result[0]["user_id"];
+            $userId = $result[0]["user_id"]; 
         }else {
             echo "token-invalid";
         }
